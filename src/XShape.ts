@@ -12,4 +12,8 @@ export class XShape {
   rotateRight() {
     return this;
   }
+
+  rotateLeft() {
+    return this;
+  }
 }
