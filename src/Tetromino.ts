@@ -18,6 +18,15 @@ export class Tetromino {
     ]);
   })();
 
+  private static create(initialString: string, rotations: number) {
+    const initial = RotatingShape.fromString(initialString);
+    const orientations = [initial];
+
+    for (let i = 1; i < rotations; i++) {
+      orientations.push(orientations[i - 1].rotateRight());
+    }
+  }
+
   constructor(orientations: RotatingShape[], index = 0) {
     this.orientations = orientations;
     this.index = index;
