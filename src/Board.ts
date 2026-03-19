@@ -29,6 +29,12 @@ export class Board {
     const rowIndex = this.cells.findIndex((row) => row.includes(this.activeBlock!));
     const colIndex = this.cells[rowIndex].indexOf(this.activeBlock);
 
+    if (rowIndex === -1) {
+      this.falling = false;
+      this.activeBlock = null;
+      return;
+    }
+
     const lastRow = this.cells[this.height - 1];
     if (lastRow.some((cell) => cell !== ".")) {
       this.falling = false;
