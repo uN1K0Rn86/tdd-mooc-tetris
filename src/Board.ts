@@ -9,12 +9,16 @@ export class Board {
     this.cells = Array.from({ length: height }, () => Array(width).fill("."));
   }
 
+  private isEmpty() {
+    return this.cells.every((row) => row.every((cell) => cell === "."));
+  }
+
   toString() {
     return this.cells.map((row) => row.join("")).join("\n") + "\n";
   }
 
   drop(block: string) {
-    const isBoardEmpty = this.cells.every((row) => row.every((cell) => cell === "."));
+    const isBoardEmpty = this.isEmpty();
     if (isBoardEmpty) {
       const middle = Math.floor(this.width / 2);
       this.cells[0][middle] = block;
