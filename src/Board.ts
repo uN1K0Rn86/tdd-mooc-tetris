@@ -24,6 +24,11 @@ export class Board {
   }
 
   tick() {
+    if (!this.activeBlock) return;
+
+    const rowIndex = this.cells.findIndex((row) => row.includes(this.activeBlock!));
+    const colIndex = this.cells[rowIndex].indexOf(this.activeBlock);
+
     const lastRow = this.cells[this.height - 1];
     if (lastRow.some((cell) => cell !== ".")) {
       this.falling = false;
