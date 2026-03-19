@@ -26,7 +26,6 @@ describe("Rotating 3x3 shape", () => {
   });
 
   test("can be rotated left/counter-clockwise", () => {
-    console.log(shape.rotateLeft().toString());
     expect(shape.rotateLeft().toString()).to.equalShape(
       `CFI
        BEH
