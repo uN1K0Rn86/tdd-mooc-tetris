@@ -11,16 +11,6 @@ export class Tetromino {
     )
   );
 
-  public static readonly I_SHAPE = new Tetromino(
-    RotatingShape.fromString(
-      `.....
-       .....
-       IIII.
-       .....
-       .....`
-    )
-  );
-
   constructor(shape: RotatingShape) {
     this.shape = shape;
   }
