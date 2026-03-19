@@ -35,6 +35,9 @@ export class Board {
       return;
     }
 
+    const isAtBottom = rowIndex === this.height - 1;
+    const isBlockedBelow = !isAtBottom && this.cells[rowIndex + 1][colIndex] !== ".";
+
     const lastRow = this.cells[this.height - 1];
     if (lastRow.some((cell) => cell !== ".")) {
       this.falling = false;
