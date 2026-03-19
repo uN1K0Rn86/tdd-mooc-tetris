@@ -11,6 +11,14 @@ export class XShape implements Shape {
     return 1;
   }
 
+  height() {
+    return 1;
+  }
+
+  cellAt(row: number, col: number): string {
+    return this.name;
+  }
+
   toString() {
     return this.name;
   }
