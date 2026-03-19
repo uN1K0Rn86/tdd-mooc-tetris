@@ -17,9 +17,15 @@ export class RotatingShape {
   rotateRight(): RotatingShape {
     const size = this.cells.length;
     const newShape = Array.from({ length: size }, () => Array(size).fill("."));
-    for (let row = 0; row < size; row++) {
-      for (let col = 0; col < size; col++) {}
-    }
+    newShape[0][0] = this.cells[2][0];
+    newShape[0][1] = this.cells[1][0];
+    newShape[0][2] = this.cells[0][0];
+    newShape[1][0] = this.cells[2][1];
+    newShape[1][1] = this.cells[1][1];
+    newShape[1][2] = this.cells[0][1];
+    newShape[2][0] = this.cells[2][2];
+    newShape[2][1] = this.cells[1][2];
+    newShape[2][2] = this.cells[0][2];
 
     return new RotatingShape(newShape);
   }
