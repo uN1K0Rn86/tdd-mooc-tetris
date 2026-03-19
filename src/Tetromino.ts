@@ -1,7 +1,8 @@
 import { RotatingShape } from "./RotatingShape";
 
 export class Tetromino {
-  private readonly shape: RotatingShape;
+  private readonly orientations: RotatingShape[];
+  private readonly index: number;
 
   public static readonly T_SHAPE = new Tetromino(
     RotatingShape.fromString(
@@ -11,11 +12,8 @@ export class Tetromino {
     )
   );
 
-  constructor(shape: RotatingShape) {
-    this.shape = shape;
-  }
-
-  toString() {
-    return this.shape.toString();
+  constructor(orientations: RotatingShape[]) {
+    this.orientations = orientations;
+    this.index = 0;
   }
 }
