@@ -12,4 +12,9 @@ export class Board {
   toString() {
     return this.cells.map((row) => row.join("")).join("\n") + "\n";
   }
+
+  drop(block: string) {
+    const middle = Math.floor(this.width / 2);
+    this.cells[0][middle] = block;
+  }
 }
