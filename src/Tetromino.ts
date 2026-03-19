@@ -20,6 +20,13 @@ export class Tetromino {
     2
   );
 
+  public static readonly O_SHAPE = Tetromino.create(
+    `.OO
+     .OO
+     ...`,
+    1
+  );
+
   private static create(initialString: string, rotations: number) {
     const initial = RotatingShape.fromString(initialString);
     const orientations = [initial];
