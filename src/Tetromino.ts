@@ -22,4 +22,8 @@ export class Tetromino {
   rotateRight() {
     return this.shape.rotateRight();
   }
+
+  rotateLeft() {
+    return this.shape.rotateLeft();
+  }
 }
