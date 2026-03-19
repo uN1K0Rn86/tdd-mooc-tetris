@@ -3,6 +3,7 @@ export class Board {
   width;
   height;
   private falling = false;
+  private activeBlock: string | null = null;
 
   constructor(width: number, height: number) {
     this.width = width;
@@ -18,6 +19,7 @@ export class Board {
     if (this.falling) throw "already falling";
     const middle = Math.floor(this.width / 2);
     this.cells[0][middle] = block;
+    this.activeBlock = block;
     this.falling = true;
   }
 
