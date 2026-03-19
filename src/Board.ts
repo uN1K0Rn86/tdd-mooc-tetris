@@ -22,6 +22,12 @@ export class Board {
   }
 
   tick() {
+    const lastRow = this.cells[this.height - 1];
+    if (lastRow.some((cell) => cell !== ".")) {
+      this.falling = false;
+      return;
+    }
+
     this.cells = this.cells.map((_, index) => {
       if (index === 0) {
         return Array(this.width).fill(".");
