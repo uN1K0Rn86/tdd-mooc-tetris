@@ -10,10 +10,6 @@ export class Board {
     this.cells = Array.from({ length: height }, () => Array(width).fill("."));
   }
 
-  private isEmpty() {
-    return this.cells.every((row) => row.every((cell) => cell === "."));
-  }
-
   toString() {
     return this.cells.map((row) => row.join("")).join("\n") + "\n";
   }
