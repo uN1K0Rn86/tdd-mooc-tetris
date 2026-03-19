@@ -26,4 +26,11 @@ export class RotatingShape {
 
     return new RotatingShape(newShape);
   }
+
+  rotateLeft(): RotatingShape {
+    const size = this.cells.length;
+    const newShape = Array.from({ length: size }, () => Array(size).fill("."));
+
+    return new RotatingShape(newShape);
+  }
 }
