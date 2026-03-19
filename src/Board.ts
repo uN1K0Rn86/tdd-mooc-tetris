@@ -14,8 +14,11 @@ export class Board {
   }
 
   drop(block: string) {
-    const middle = Math.floor(this.width / 2);
-    this.cells[0][middle] = block;
+    const isBoardEmpty = this.cells.every((row) => row.every((cell) => cell === "."));
+    if (isBoardEmpty) {
+      const middle = Math.floor(this.width / 2);
+      this.cells[0][middle] = block;
+    } else throw "already falling";
   }
 
   tick() {
