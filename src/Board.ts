@@ -44,13 +44,8 @@ export class Board {
       return;
     }
 
-    this.cells = this.cells.map((_, index) => {
-      if (index === 0) {
-        return Array(this.width).fill(".");
-      } else {
-        return this.cells[index - 1];
-      }
-    });
+    this.cells[rowIndex + 1][colIndex] = this.activeBlock;
+    this.cells[rowIndex][colIndex] = ".";
   }
 
   hasFalling() {
