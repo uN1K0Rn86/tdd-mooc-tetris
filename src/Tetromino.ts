@@ -12,8 +12,8 @@ export class Tetromino {
     )
   );
 
-  constructor(orientations: RotatingShape[]) {
+  constructor(orientations: RotatingShape[], index = 0) {
     this.orientations = orientations;
-    this.index = 0;
+    this.index = index;
   }
 }
