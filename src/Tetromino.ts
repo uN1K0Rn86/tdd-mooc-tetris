@@ -11,6 +11,15 @@ export class Tetromino {
     4
   );
 
+  public static readonly I_SHAPE = Tetromino.create(
+    `.....
+     .....
+     IIII.
+     .....
+     .....`,
+    2
+  );
+
   private static create(initialString: string, rotations: number) {
     const initial = RotatingShape.fromString(initialString);
     const orientations = [initial];
