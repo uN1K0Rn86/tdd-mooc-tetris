@@ -4,4 +4,12 @@ export class XShape {
   constructor(name: string = "X") {
     this.name = name;
   }
+
+  toString() {
+    return this.name;
+  }
+
+  rotateRight() {
+    return this;
+  }
 }
