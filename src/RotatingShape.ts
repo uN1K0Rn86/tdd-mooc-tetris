@@ -5,7 +5,7 @@ export class RotatingShape {
     this.cells = cells.map((row) => [...row]);
   }
 
-  fromString(str: string): RotatingShape {
+  static fromString(str: string): RotatingShape {
     const rows = str.split("\n").map((row) => row.trim().split(""));
     return new RotatingShape(rows);
   }
