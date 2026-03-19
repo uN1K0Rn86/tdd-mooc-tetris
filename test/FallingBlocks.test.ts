@@ -1,6 +1,7 @@
 import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board";
+import { XShape } from "../src/XShape";
 
 describe("Falling blocks", () => {
   let board: Board;
@@ -18,7 +19,7 @@ describe("Falling blocks", () => {
 
   describe("When a block is dropped", () => {
     beforeEach(() => {
-      board.drop("X");
+      board.drop(new XShape());
     });
 
     test("it starts from the top middle", () => {

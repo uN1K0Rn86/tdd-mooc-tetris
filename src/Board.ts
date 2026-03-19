@@ -5,7 +5,7 @@ export class Board {
   width;
   height;
   private falling = false;
-  private activeBlock: string | null = null;
+  private activeBlock: Shape | null = null;
 
   constructor(width: number, height: number) {
     this.width = width;
@@ -17,10 +17,10 @@ export class Board {
     return this.cells.map((row) => row.join("")).join("\n") + "\n";
   }
 
-  drop(block: string) {
+  drop(block: Shape) {
     if (this.falling) throw "already falling";
     const middle = Math.floor(this.width / 2);
-    this.cells[0][middle] = block;
+    this.cells[0][middle] = block.toString();
     this.activeBlock = block;
     this.falling = true;
   }
@@ -28,8 +28,8 @@ export class Board {
   tick() {
     if (!this.activeBlock) return;
 
-    const rowIndex = this.cells.findIndex((row) => row.includes(this.activeBlock!));
-    const colIndex = this.cells[rowIndex].indexOf(this.activeBlock);
+    const rowIndex = this.cells.findIndex((row) => row.includes(this.activeBlock?.toString()!));
+    const colIndex = this.cells[rowIndex].indexOf(this.activeBlock.toString());
 
     if (rowIndex === -1) {
       this.falling = false;
@@ -46,7 +46,7 @@ export class Board {
       return;
     }
 
-    this.cells[rowIndex + 1][colIndex] = this.activeBlock;
+    this.cells[rowIndex + 1][colIndex] = this.activeBlock.toString();
     this.cells[rowIndex][colIndex] = ".";
   }
 
