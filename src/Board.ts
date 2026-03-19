@@ -17,4 +17,14 @@ export class Board {
     const middle = Math.floor(this.width / 2);
     this.cells[0][middle] = block;
   }
+
+  tick() {
+    this.cells = this.cells.map((_, index) => {
+      if (index === 0) {
+        return Array(this.width).fill(".");
+      } else {
+        return this.cells[index - 1];
+      }
+    });
+  }
 }
