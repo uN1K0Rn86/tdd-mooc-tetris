@@ -1,8 +1,14 @@
-export class XShape {
+import { Shape } from "./Shape";
+
+export class XShape implements Shape {
   private readonly name: string;
 
   constructor(name: string = "X") {
     this.name = name;
+  }
+
+  width() {
+    return 1;
   }
 
   toString() {
