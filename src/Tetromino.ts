@@ -25,6 +25,8 @@ export class Tetromino {
     for (let i = 1; i < rotations; i++) {
       orientations.push(orientations[i - 1].rotateRight());
     }
+
+    return new Tetromino(orientations, rotations);
   }
 
   constructor(orientations: RotatingShape[], index = 0) {
