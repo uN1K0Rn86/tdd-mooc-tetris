@@ -13,4 +13,14 @@ export class RotatingShape {
   toString() {
     return this.cells.map((row) => row.join("")).join("\n") + "\n";
   }
+
+  rotateRight(): RotatingShape {
+    const size = this.cells.length;
+    const newShape = Array.from({ length: size }, () => Array(size).fill("."));
+    for (let row = 0; row < size; row++) {
+      for (let col = 0; col < size; col++) {}
+    }
+
+    return new RotatingShape(newShape);
+  }
 }
