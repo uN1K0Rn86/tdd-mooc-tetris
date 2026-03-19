@@ -1,3 +1,5 @@
+import { Shape } from "./Shape";
+
 export class Board {
   private cells: string[][];
   width;
