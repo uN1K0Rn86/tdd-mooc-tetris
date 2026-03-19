@@ -31,6 +31,12 @@ export class RotatingShape {
     const size = this.cells.length;
     const newShape = Array.from({ length: size }, () => Array(size).fill("."));
 
+    for (let row = 0; row < size; row++) {
+      for (let col = 0; col < size; col++) {
+        newShape[size - 1 - col][row] = this.cells[row][col];
+      }
+    }
+
     return new RotatingShape(newShape);
   }
 }
