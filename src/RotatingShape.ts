@@ -9,4 +9,8 @@ export class RotatingShape {
     const rows = str.split("\n").map((row) => row.trim().split(""));
     return new RotatingShape(rows);
   }
+
+  toString() {
+    return this.cells.map((row) => row.join("")).join("\n") + "\n";
+  }
 }
