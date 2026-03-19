@@ -34,4 +34,9 @@ export class Board {
       }
     });
   }
+
+  hasFalling() {
+    if (this.isEmpty()) return false;
+    else return true;
+  }
 }
