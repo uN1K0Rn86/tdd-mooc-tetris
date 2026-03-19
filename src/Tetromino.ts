@@ -4,19 +4,12 @@ export class Tetromino {
   private readonly orientations: RotatingShape[];
   private readonly index: number;
 
-  public static readonly T_SHAPE = (() => {
-    const initial = RotatingShape.fromString(
-      `.T.
-       TTT
-       ...`
-    );
-    return new Tetromino([
-      initial,
-      initial.rotateRight(),
-      initial.rotateRight().rotateRight(),
-      initial.rotateRight().rotateRight().rotateRight(),
-    ]);
-  })();
+  public static readonly T_SHAPE = Tetromino.create(
+    `.T.
+     TTT
+     ...`,
+    4
+  );
 
   private static create(initialString: string, rotations: number) {
     const initial = RotatingShape.fromString(initialString);
@@ -26,7 +19,7 @@ export class Tetromino {
       orientations.push(orientations[i - 1].rotateRight());
     }
 
-    return new Tetromino(orientations, rotations);
+    return new Tetromino(orientations, 0);
   }
 
   constructor(orientations: RotatingShape[], index = 0) {
