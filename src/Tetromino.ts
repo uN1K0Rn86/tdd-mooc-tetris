@@ -56,4 +56,12 @@ export class Tetromino {
     const previousIndex = (this.index - 1 + this.orientations.length) % this.orientations.length;
     return new Tetromino(this.orientations, previousIndex);
   }
+
+  width(): number {
+    return this.orientations[this.index].width();
+  }
+
+  height(): number {
+    return this.orientations[this.index].height();
+  }
 }
