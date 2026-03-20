@@ -1,6 +1,7 @@
 import { RotatingShape } from "./RotatingShape";
+import { Shape } from "./Shape";
 
-export class Tetromino {
+export class Tetromino implements Shape {
   private readonly orientations: RotatingShape[];
   private readonly index: number;
 
@@ -63,5 +64,9 @@ export class Tetromino {
 
   height(): number {
     return this.orientations[this.index].height();
+  }
+
+  cellAt(row: number, col: number): string {
+    return this.orientations[this.index].cellAt(row, col);
   }
 }

@@ -47,4 +47,8 @@ export class RotatingShape {
   height(): number {
     return this.cells.length;
   }
+
+  cellAt(row: number, col: number): string {
+    return this.cells[row][col];
+  }
 }
