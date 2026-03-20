@@ -39,4 +39,12 @@ export class RotatingShape {
 
     return new RotatingShape(newShape);
   }
+
+  width(): number {
+    return this.cells[0].length;
+  }
+
+  height(): number {
+    return this.cells.length;
+  }
 }
