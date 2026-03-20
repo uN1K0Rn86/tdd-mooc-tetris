@@ -2,7 +2,7 @@ import { describe, test } from "vitest";
 import { expect } from "chai";
 import { Tetromino } from "../src/Tetromino";
 
-function distinctOrientations(shape) {
+function distinctOrientations(shape: Tetromino) {
   const distinct = new Set();
   let goingRight = shape;
   let goingLeft = shape;
