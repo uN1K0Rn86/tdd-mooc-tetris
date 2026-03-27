@@ -100,6 +100,10 @@ export class Board {
     if (this.activeCol !== null) this.activeCol -= 1;
   }
 
+  moveRight() {
+    if (this.activeCol !== null) this.activeCol += 1;
+  }
+
   hasFalling() {
     return this.falling;
   }
