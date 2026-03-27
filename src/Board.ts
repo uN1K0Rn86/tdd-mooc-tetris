@@ -18,23 +18,28 @@ export class Board {
   toString() {
     const view = this.cells.map((row) => [...row]);
 
-    if (this.activeBlock && this.activeRow && this.activeCol) {
+    if (this.activeBlock !== null && this.activeRow !== null && this.activeCol !== null) {
       for (let r = 0; r < this.activeBlock.height(); r++) {
         for (let c = 0; c < this.activeBlock.width(); c++) {
           const cell = this.activeBlock.cellAt(r, c);
           if (cell === ".") continue;
+
+          const blockRow = this.activeRow + r;
+          const blockCol = this.activeCol + c;
+
+          if (blockRow >= 0 && blockRow < this.height && blockCol >= 0 && blockCol < this.width) {
+            view[blockRow][blockCol] = cell;
+          }
         }
       }
     }
-    return this.cells.map((row) => row.join("")).join("\n") + "\n";
+    return view.map((row) => row.join("")).join("\n") + "\n";
   }
 
   drop(block: Shape) {
     if (this.falling) throw "already falling";
     this.activeRow = 0;
     this.activeCol = Math.floor((this.width - block.width()) / 2);
-    const middle = Math.floor(this.width / 2);
-    this.cells[0][middle] = block.toString();
     this.activeBlock = block;
     this.falling = true;
   }

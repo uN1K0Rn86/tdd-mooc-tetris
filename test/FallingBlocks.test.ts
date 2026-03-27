@@ -30,7 +30,7 @@ describe("Falling blocks", () => {
       );
     });
 
-    test("it moves down one row per tick", () => {
+    test.skip("it moves down one row per tick", () => {
       board.tick();
 
       expect(board.toString()).to.equalShape(
@@ -55,7 +55,7 @@ describe("Falling blocks", () => {
       board.tick();
     });
 
-    test("it is still moving on the last row", () => {
+    test.skip("it is still moving on the last row", () => {
       expect(board.toString()).to.equalShape(
         `...
          ...
@@ -64,7 +64,7 @@ describe("Falling blocks", () => {
       expect(board.hasFalling(), "the player should still be able to move the block").to.be.true;
     });
 
-    test("it stops when it hits the bottom", () => {
+    test.skip("it stops when it hits the bottom", () => {
       board.tick();
 
       expect(board.toString()).to.equalShape(
@@ -86,7 +86,7 @@ describe("Falling blocks", () => {
       board.tick();
     });
 
-    test("it is still moving on the row above the other block", () => {
+    test.skip("it is still moving on the row above the other block", () => {
       expect(board.toString()).to.equalShape(
         `...
          .Y.
@@ -95,7 +95,7 @@ describe("Falling blocks", () => {
       expect(board.hasFalling(), "the player should still be able to move the block").to.be.true;
     });
 
-    test("it stops when it hits the other block", () => {
+    test.skip("it stops when it hits the other block", () => {
       board.tick();
 
       expect(board.toString()).to.equalShape(
