@@ -15,6 +15,16 @@ export class Board {
     this.cells = Array.from({ length: height }, () => Array(width).fill("."));
   }
 
+  private canMoveDown(): boolean {
+    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
+
+    for (let r = 0; r < this.activeBlock.height(); r++) {
+      for (let c = 0; c < this.activeBlock.width(); c++) {
+        const cell = this.activeBlock.cellAt(r, c);
+      }
+    }
+  }
+
   toString() {
     const view = this.cells.map((row) => [...row]);
 
@@ -48,8 +58,6 @@ export class Board {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
 
     this.activeRow += 1;
-
-    const isAtBottom = this.activeRow === this.height - 1;
   }
 
   hasFalling() {
