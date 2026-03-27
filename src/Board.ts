@@ -21,8 +21,17 @@ export class Board {
     for (let r = 0; r < this.activeBlock.height(); r++) {
       for (let c = 0; c < this.activeBlock.width(); c++) {
         const cell = this.activeBlock.cellAt(r, c);
+        if (cell === ".") continue;
+
+        const nextRow = this.activeRow + r + 1;
+        const col = this.activeCol + c;
+
+        if (nextRow >= this.height) return false;
+        if (col < 0 || col >= this.width) return false;
+        if (this.cells[nextRow][col] !== ".") return false;
       }
     }
+    return true;
   }
 
   toString() {
