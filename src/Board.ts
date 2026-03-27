@@ -34,7 +34,7 @@ export class Board {
     return true;
   }
 
-  private canMoveLeft(): boolean {
+  private canMove(direction: string): boolean {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
 
     for (let r = 0; r < this.activeBlock.height(); r++) {
@@ -42,10 +42,14 @@ export class Board {
         const cell = this.activeBlock.cellAt(r, c);
         if (cell === ".") continue;
 
-        const row = this.activeRow + r;
-        const previousCol = this.activeCol + c - 1;
+        let colToCheck;
+        if (direction === "left") {
+          colToCheck = this.activeCol + c - 1;
+        } else {
+          colToCheck = this.activeCol + c + 1;
+        }
 
-        if (previousCol < 0) return false;
+        if (direction === "left" && colToCheck < 0) return false;
       }
     }
     return true;
@@ -114,11 +118,11 @@ export class Board {
   }
 
   moveLeft() {
-    if (this.activeCol !== null && this.canMoveLeft()) this.activeCol -= 1;
+    if (this.activeCol !== null && this.canMove("left")) this.activeCol -= 1;
   }
 
   moveRight() {
-    if (this.activeCol !== null) this.activeCol += 1;
+    if (this.activeCol !== null && this.canMove("right")) this.activeCol += 1;
   }
 
   moveDown() {
