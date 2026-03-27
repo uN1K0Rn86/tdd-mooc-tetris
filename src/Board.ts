@@ -33,6 +33,7 @@ export class Board {
         }
       }
     }
+    console.log(view);
     return view.map((row) => row.join("")).join("\n") + "\n";
   }
 
@@ -45,28 +46,18 @@ export class Board {
   }
 
   tick() {
-    if (!this.activeBlock) return;
+    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
 
-    const rowIndex = this.cells.findIndex((row) => row.includes(this.activeBlock?.toString()!));
-    const colIndex = this.cells[rowIndex].indexOf(this.activeBlock.toString());
+    this.activeRow += 1;
 
-    if (rowIndex === -1) {
-      this.falling = false;
-      this.activeBlock = null;
-      return;
-    }
-
-    const isAtBottom = rowIndex === this.height - 1;
-    const isBlockedBelow = !isAtBottom && this.cells[rowIndex + 1][colIndex] !== ".";
+    const isAtBottom = this.activeRow === this.height - 1;
+    const isBlockedBelow = !isAtBottom && this.cells[this.activeRow + 1][this.activeCol] !== ".";
 
     if (isAtBottom || isBlockedBelow) {
       this.falling = false;
       this.activeBlock = null;
       return;
     }
-
-    this.cells[rowIndex + 1][colIndex] = this.activeBlock.toString();
-    this.cells[rowIndex][colIndex] = ".";
   }
 
   hasFalling() {
