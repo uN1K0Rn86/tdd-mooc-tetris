@@ -34,6 +34,12 @@ export class Board {
     return true;
   }
 
+  private lockActiveBlock() {
+    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
+
+    for (let r = 0; r < this.activeBlock.height(); r++) {}
+  }
+
   toString() {
     const view = this.cells.map((row) => [...row]);
 
@@ -66,7 +72,10 @@ export class Board {
   tick() {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
 
-    this.activeRow += 1;
+    if (this.canMoveDown()) {
+      this.activeRow += 1;
+      return;
+    }
   }
 
   hasFalling() {
