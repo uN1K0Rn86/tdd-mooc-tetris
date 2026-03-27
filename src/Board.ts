@@ -34,6 +34,15 @@ export class Board {
     return true;
   }
 
+  private canMoveLeft(): boolean {
+    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
+
+    for (let r = 0; r < this.activeBlock.height(); r++) {
+      for (let c = 0; c < this.activeBlock.width(); c++) {}
+    }
+    return true;
+  }
+
   private lockActiveBlock() {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
 
