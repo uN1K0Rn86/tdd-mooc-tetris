@@ -155,4 +155,26 @@ describe("Moving falling tetrominoes", () => {
       );
     });
   });
+
+  describe("cannot be moved through other blocks", () => {
+    test("to the left", () => {
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      board.moveDown();
+      board.tick();
+      board.drop(Tetromino.T_SHAPE);
+      board.moveDown();
+      board.moveLeft();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ..........
+         .T..T.....
+         TTTTTT....`
+      );
+    });
+  });
 });

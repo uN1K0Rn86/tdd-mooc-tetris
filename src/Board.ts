@@ -42,6 +42,7 @@ export class Board {
         const cell = this.activeBlock.cellAt(r, c);
         if (cell === ".") continue;
 
+        const row = this.activeRow + r;
         let colToCheck;
         if (direction === "left") {
           colToCheck = this.activeCol + c - 1;
@@ -50,6 +51,7 @@ export class Board {
         }
 
         if (direction === "left" && colToCheck < 0) return false;
+        if (direction === "left" && this.cells[row][colToCheck] !== ".") return false;
         if (direction === "right" && colToCheck >= this.width) return false;
       }
     }
