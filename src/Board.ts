@@ -6,6 +6,8 @@ export class Board {
   height;
   private falling = false;
   private activeBlock: Shape | null = null;
+  private activeRow: number | null = null;
+  private activeCol: number | null = null;
 
   constructor(width: number, height: number) {
     this.width = width;
@@ -19,6 +21,8 @@ export class Board {
 
   drop(block: Shape) {
     if (this.falling) throw "already falling";
+    this.activeRow = 0;
+    this.activeCol = Math.floor((this.width - block.width()) / 2);
     const middle = Math.floor(this.width / 2);
     this.cells[0][middle] = block.toString();
     this.activeBlock = block;
