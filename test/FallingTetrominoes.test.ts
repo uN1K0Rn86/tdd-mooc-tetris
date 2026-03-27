@@ -140,5 +140,19 @@ describe("Moving falling tetrominoes", () => {
          ..........`
       );
     });
+
+    test("downward", () => {
+      board.moveDown();
+      board.moveDown();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ..........
+         ....T.....
+         ...TTT....`
+      );
+    });
   });
 });
