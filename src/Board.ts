@@ -96,6 +96,10 @@ export class Board {
     this.activeCol = null;
   }
 
+  moveLeft() {
+    if (this.activeCol !== null) this.activeCol -= 1;
+  }
+
   hasFalling() {
     return this.falling;
   }
