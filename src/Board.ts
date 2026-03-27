@@ -37,7 +37,11 @@ export class Board {
   private lockActiveBlock() {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
 
-    for (let r = 0; r < this.activeBlock.height(); r++) {}
+    for (let r = 0; r < this.activeBlock.height(); r++) {
+      for (let c = 0; c < this.activeBlock.width(); c++) {
+        const cell = this.activeBlock.cellAt(r, c);
+      }
+    }
   }
 
   toString() {
@@ -49,11 +53,11 @@ export class Board {
           const cell = this.activeBlock.cellAt(r, c);
           if (cell === ".") continue;
 
-          const blockRow = this.activeRow + r;
-          const blockCol = this.activeCol + c;
+          const boardRow = this.activeRow + r;
+          const boardCol = this.activeCol + c;
 
-          if (blockRow >= 0 && blockRow < this.height && blockCol >= 0 && blockCol < this.width) {
-            view[blockRow][blockCol] = cell;
+          if (boardRow >= 0 && boardRow < this.height && boardCol >= 0 && boardCol < this.width) {
+            view[boardRow][boardCol] = cell;
           }
         }
       }
