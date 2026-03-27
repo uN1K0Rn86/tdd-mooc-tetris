@@ -40,6 +40,14 @@ export class Board {
     for (let r = 0; r < this.activeBlock.height(); r++) {
       for (let c = 0; c < this.activeBlock.width(); c++) {
         const cell = this.activeBlock.cellAt(r, c);
+        if (cell === ".") continue;
+
+        const boardRow = this.activeRow + r;
+        const boardCol = this.activeCol + c;
+
+        if (boardRow >= 0 && boardRow < this.height && boardCol >= 0 && boardCol < this.width) {
+          this.cells[boardRow][boardCol] = cell;
+        }
       }
     }
   }
