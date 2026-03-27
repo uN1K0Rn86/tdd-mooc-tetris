@@ -50,6 +50,7 @@ export class Board {
         }
 
         if (direction === "left" && colToCheck < 0) return false;
+        if (direction === "right" && colToCheck >= this.width) return false;
       }
     }
     return true;

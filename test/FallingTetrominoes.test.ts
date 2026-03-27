@@ -124,7 +124,7 @@ describe("Moving falling tetrominoes", () => {
       );
     });
 
-    test.skip("to the right", () => {
+    test("to the right", () => {
       board.moveRight();
       board.moveRight();
       board.moveRight();
