@@ -176,5 +176,25 @@ describe("Moving falling tetrominoes", () => {
          TTTTTT....`
       );
     });
+
+    test("to the right", () => {
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      board.moveDown();
+      board.tick();
+      board.drop(Tetromino.T_SHAPE);
+      board.moveDown();
+      board.moveRight();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ..........
+         ....T..T..
+         ...TTTTTT.`
+      );
+    });
   });
 });
