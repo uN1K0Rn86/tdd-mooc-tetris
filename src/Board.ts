@@ -16,6 +16,16 @@ export class Board {
   }
 
   toString() {
+    const view = this.cells.map((row) => [...row]);
+
+    if (this.activeBlock && this.activeRow && this.activeCol) {
+      for (let r = 0; r < this.activeBlock.height(); r++) {
+        for (let c = 0; c < this.activeBlock.width(); c++) {
+          const cell = this.activeBlock.cellAt(r, c);
+          if (cell === ".") continue;
+        }
+      }
+    }
     return this.cells.map((row) => row.join("")).join("\n") + "\n";
   }
 
