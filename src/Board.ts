@@ -38,7 +38,15 @@ export class Board {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
 
     for (let r = 0; r < this.activeBlock.height(); r++) {
-      for (let c = 0; c < this.activeBlock.width(); c++) {}
+      for (let c = 0; c < this.activeBlock.width(); c++) {
+        const cell = this.activeBlock.cellAt(r, c);
+        if (cell === ".") continue;
+
+        const row = this.activeRow + r;
+        const previousCol = this.activeCol + c - 1;
+
+        if (previousCol < 0) return false;
+      }
     }
     return true;
   }
@@ -106,7 +114,7 @@ export class Board {
   }
 
   moveLeft() {
-    if (this.activeCol !== null) this.activeCol -= 1;
+    if (this.activeCol !== null && this.canMoveLeft()) this.activeCol -= 1;
   }
 
   moveRight() {

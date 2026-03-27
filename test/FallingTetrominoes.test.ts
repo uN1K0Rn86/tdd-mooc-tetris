@@ -108,7 +108,7 @@ describe("Moving falling tetrominoes", () => {
   });
 
   describe("cannot be moved beyond the board", () => {
-    test.skip("to the left", () => {
+    test("to the left", () => {
       board.moveLeft();
       board.moveLeft();
       board.moveLeft();
