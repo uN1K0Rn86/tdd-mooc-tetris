@@ -33,7 +33,6 @@ export class Board {
         }
       }
     }
-    console.log(view);
     return view.map((row) => row.join("")).join("\n") + "\n";
   }
 
@@ -51,13 +50,6 @@ export class Board {
     this.activeRow += 1;
 
     const isAtBottom = this.activeRow === this.height - 1;
-    const isBlockedBelow = !isAtBottom && this.cells[this.activeRow + 1][this.activeCol] !== ".";
-
-    if (isAtBottom || isBlockedBelow) {
-      this.falling = false;
-      this.activeBlock = null;
-      return;
-    }
   }
 
   hasFalling() {
