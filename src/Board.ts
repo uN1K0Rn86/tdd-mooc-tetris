@@ -88,6 +88,12 @@ export class Board {
       this.activeRow += 1;
       return;
     }
+
+    this.lockActiveBlock();
+    this.falling = false;
+    this.activeBlock = null;
+    this.activeRow = null;
+    this.activeCol = null;
   }
 
   hasFalling() {
