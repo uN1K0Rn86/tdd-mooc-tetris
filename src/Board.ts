@@ -104,6 +104,14 @@ export class Board {
     if (this.activeCol !== null) this.activeCol += 1;
   }
 
+  moveDown() {
+    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
+
+    while (this.canMoveDown()) {
+      this.tick();
+    }
+  }
+
   hasFalling() {
     return this.falling;
   }
