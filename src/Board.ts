@@ -50,7 +50,7 @@ export class Board {
     return true;
   }
 
-  private canRotate(rotated: Shape): boolean {
+  private tryRotate(rotated: Shape): boolean {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
 
     const kicks = [
@@ -60,8 +60,13 @@ export class Board {
     ];
 
     for (const k of kicks) {
-      if (this.canPlace(rotated, this.activeRow + k.dr, this.activeCol + k.dc)) {
+      const nextRow = this.activeRow + k.dr;
+      const nextCol = this.activeCol + k.dc;
+
+      if (this.canPlace(rotated, nextRow, nextCol)) {
         this.activeBlock = rotated;
+        this.activeRow = nextRow;
+        this.activeCol = nextCol;
         return true;
       }
     }
@@ -134,13 +139,13 @@ export class Board {
   rotateLeft() {
     if (!this.activeBlock) return;
     const rotated = this.activeBlock.rotateLeft();
-    this.canRotate(rotated);
+    this.tryRotate(rotated);
   }
 
   rotateRight() {
     if (!this.activeBlock) return;
     const rotated = this.activeBlock.rotateRight();
-    this.canRotate(rotated);
+    this.tryRotate(rotated);
   }
 
   hasFalling() {
