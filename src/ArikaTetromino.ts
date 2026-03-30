@@ -32,18 +32,25 @@ export class ArikaTetromino implements Shape {
     [".JJ.", ".J..", ".J..", "...."],
   ]);
 
-  public static readonly "S_SHAPE" = new ArikaTetromino([
+  public static readonly S_SHAPE = new ArikaTetromino([
     ["....", ".SS.", "SS..", "...."],
     ["S...", "SS..", ".S..", "...."],
     ["....", ".SS.", "SS..", "...."],
     ["S...", "SS..", ".S..", "...."],
   ]);
 
-  public static readonly "Z_SHAPE" = new ArikaTetromino([
+  public static readonly Z_SHAPE = new ArikaTetromino([
     ["....", "ZZ..", ".ZZ.", "...."],
     ["..Z.", ".ZZ.", ".Z..", "...."],
     ["....", "ZZ..", ".ZZ.", "...."],
     ["..Z.", ".ZZ.", ".Z..", "...."],
+  ]);
+
+  public static readonly O_SHAPE = new ArikaTetromino([
+    ["....", ".OO.", ".OO.", "...."],
+    ["....", ".OO.", ".OO.", "...."],
+    ["....", ".OO.", ".OO.", "...."],
+    ["....", ".OO.", ".OO.", "...."],
   ]);
 
   constructor(orientations: string[][], index = 0) {
