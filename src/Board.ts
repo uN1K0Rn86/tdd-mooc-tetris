@@ -59,8 +59,6 @@ export class Board {
       { dc: 1, dr: 0 },
       { dc: -2, dr: 0 },
       { dc: 2, dr: 0 },
-      { dc: 0, dr: 1 },
-      { dc: 0, dr: 2 },
     ];
 
     for (const k of kicks) {
