@@ -15,4 +15,13 @@ export class ArikaTetromino implements Shape {
     this.orientations = orientations;
     this.index = index;
   }
+
+  toString(): string {
+    return this.orientations[this.index].join("\n") + "\n";
+  }
+
+  rotateRight(): ArikaTetromino {
+    const nextIndex = (this.index + 1) % this.orientations.length;
+    return new ArikaTetromino(this.orientations, nextIndex);
+  }
 }
