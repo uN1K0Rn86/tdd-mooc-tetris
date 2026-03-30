@@ -74,6 +74,15 @@ export class Board {
     return false;
   }
 
+  private topInset(shape: Shape): number {
+    for (let r = 0; r < shape.height(); r++) {
+      for (let c = 0; c < shape.width(); c++) {
+        if (shape.cellAt(r, c) !== ".") return r;
+      }
+    }
+    return 0;
+  }
+
   toString() {
     const view = this.cells.map((row) => [...row]);
 
@@ -97,7 +106,7 @@ export class Board {
 
   drop(block: Shape) {
     if (this.falling) throw "already falling";
-    this.activeRow = 0;
+    this.activeRow = -this.topInset(block);
     this.activeCol = Math.floor((this.width - block.width()) / 2);
     this.activeBlock = block;
     this.falling = true;
