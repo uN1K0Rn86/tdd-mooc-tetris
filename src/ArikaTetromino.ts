@@ -33,4 +33,8 @@ export class ArikaTetromino implements Shape {
   width(): number {
     return this.orientations[this.index].length;
   }
+
+  height(): number {
+    return this.orientations.length;
+  }
 }
