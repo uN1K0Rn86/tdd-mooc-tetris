@@ -90,5 +90,25 @@ describe("Falling rotating tetrominoes", () => {
          ..........`
       );
     });
+
+    test("to the left", () => {
+      board.drop(Tetromino.T_SHAPE);
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      board.rotateLeft();
+      board.moveRight();
+      board.moveRight();
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `........T.
+         .......TTT
+         ..........
+         ..........
+         ..........
+         ..........`
+      );
+    });
   });
 });
