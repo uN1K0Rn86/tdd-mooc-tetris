@@ -28,6 +28,20 @@ describe("Falling tetrominoes", () => {
     );
   });
 
+  test("start from the top middle (I-Shape)", () => {
+    board.drop(Tetromino.I_SHAPE);
+
+    console.log(board.toString());
+    expect(board.toString()).to.equalShape(
+      `...IIII...
+       ..........
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
   test("stop when they hit the bottom", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
