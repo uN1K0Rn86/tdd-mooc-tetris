@@ -81,6 +81,13 @@ export class Board {
       for (let c = 0; c < shape.width(); c++) {
         const cell = shape.cellAt(r, c);
         if (cell === ".") continue;
+
+        const boardRow = baseRow + r;
+        const boardCol = baseCol + c;
+
+        if (boardRow < 0 || boardRow >= this.height) return false;
+        if (boardCol < 0 || boardCol >= this.width) return false;
+        if (this.cells[boardRow][boardCol] !== ".") return false;
       }
     }
     return true;
