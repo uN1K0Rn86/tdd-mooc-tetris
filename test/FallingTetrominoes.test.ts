@@ -3,19 +3,19 @@ import { expect } from "chai";
 import { Board } from "../src/Board";
 import { ArikaTetromino } from "../src/ArikaTetromino";
 
-function fallToBottom(board: Board) {
+export function fallToBottom(board: Board) {
   for (let i = 0; i < 10; i++) {
     board.tick();
   }
 }
 
-function moveFarLeft(board: Board) {
+export function moveFarLeft(board: Board) {
   for (let i = 0; i < 10; i++) {
     board.moveLeft();
   }
 }
 
-function moveFarRight(board: Board) {
+export function moveFarRight(board: Board) {
   for (let i = 0; i < 10; i++) {
     board.moveRight();
   }
