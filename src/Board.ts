@@ -50,10 +50,16 @@ export class Board {
     return true;
   }
 
-  private canRotate(shape: Shape): boolean {
+  private canRotate(rotated: Shape): boolean {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
 
-    return true;
+    const kicks = [
+      { dc: 0, dr: 0 },
+      { dc: -1, dr: 0 },
+      { dc: 1, dr: 0 },
+    ];
+
+    return false;
   }
 
   toString() {
