@@ -132,11 +132,9 @@ export class Board {
   }
 
   rotateLeft() {
-    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
+    if (!this.activeBlock) return;
     const rotated = this.activeBlock.rotateLeft();
-    if (this.canPlace(rotated, this.activeRow, this.activeCol)) {
-      this.activeBlock = this.activeBlock.rotateLeft();
-    }
+    this.canRotate(rotated);
   }
 
   rotateRight() {
