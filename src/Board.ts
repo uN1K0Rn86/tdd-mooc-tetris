@@ -136,6 +136,8 @@ export class Board {
     }
   }
 
+  rotateLeft() {}
+
   hasFalling() {
     return this.falling;
   }
