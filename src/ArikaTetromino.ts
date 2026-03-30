@@ -24,4 +24,13 @@ export class ArikaTetromino implements Shape {
     const nextIndex = (this.index + 1) % this.orientations.length;
     return new ArikaTetromino(this.orientations, nextIndex);
   }
+
+  rotateLeft(): ArikaTetromino {
+    const previousIndex = (this.index - 1 + this.orientations.length) % this.orientations.length;
+    return new ArikaTetromino(this.orientations, previousIndex);
+  }
+
+  width(): number {
+    return this.orientations[this.index].length;
+  }
 }
