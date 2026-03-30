@@ -3,7 +3,7 @@ import { expect } from "chai";
 import { Board } from "../src/Board";
 import { Tetromino } from "../src/Tetromino";
 import { ArikaTetromino } from "../src/ArikaTetromino";
-import { moveFarLeft } from "./FallingTetrominoes.test";
+import { moveFarLeft, moveFarRight } from "./FallingTetrominoes.test";
 
 describe("Falling rotating tetrominoes", () => {
   let board: Board;
@@ -92,19 +92,16 @@ describe("Falling rotating tetrominoes", () => {
     });
 
     test("to the right", () => {
-      board.drop(Tetromino.T_SHAPE);
-      board.moveRight();
-      board.moveRight();
-      board.moveRight();
+      board.drop(ArikaTetromino.T_SHAPE);
+      moveFarRight(board);
+      board.tick();
       board.rotateLeft();
-      board.moveRight();
-      board.moveRight();
       board.rotateRight();
 
       expect(board.toString()).to.equalShape(
-        `........T.
+        `..........
          .......TTT
-         ..........
+         ........T.
          ..........
          ..........
          ..........`
