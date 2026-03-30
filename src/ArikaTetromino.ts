@@ -1,7 +1,7 @@
 import { Shape } from "./Shape";
 
 export class ArikaTetromino implements Shape {
-  private readonly orientations: string[][]; // fixed
+  private readonly orientations: string[][];
   private readonly index: number;
 
   public static readonly T_SHAPE = new ArikaTetromino([
@@ -36,5 +36,9 @@ export class ArikaTetromino implements Shape {
 
   height(): number {
     return this.orientations.length;
+  }
+
+  cellAt(row: number, col: number): string {
+    return this.orientations[this.index][row][col];
   }
 }
