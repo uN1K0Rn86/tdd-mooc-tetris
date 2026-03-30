@@ -1,9 +1,14 @@
 import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board";
-import { Tetromino } from "../src/Tetromino";
 import { ArikaTetromino } from "../src/ArikaTetromino";
 import { moveFarLeft, moveFarRight } from "./FallingTetrominoes.test";
+
+export function dropTShapeAndLock(board: Board) {
+  board.drop(ArikaTetromino.T_SHAPE);
+  board.moveDown();
+  board.tick();
+}
 
 describe("Falling rotating tetrominoes", () => {
   let board: Board;
@@ -109,55 +114,47 @@ describe("Falling rotating tetrominoes", () => {
     });
 
     test("to the left (against another block)", () => {
-      board.drop(Tetromino.T_SHAPE);
-      board.moveDown();
+      dropTShapeAndLock(board);
+      dropTShapeAndLock(board);
+      board.drop(ArikaTetromino.T_SHAPE);
+      moveFarRight(board);
       board.tick();
-      board.drop(Tetromino.T_SHAPE);
-      board.moveDown();
-      board.tick();
-      board.drop(Tetromino.T_SHAPE);
-      board.moveRight();
-      board.moveRight();
-      board.moveRight();
       board.rotateRight();
       board.moveLeft();
       board.tick();
       board.tick();
+      board.moveLeft();
       board.rotateLeft();
 
       expect(board.toString()).to.equalShape(
         `..........
          ..........
-         ....T..T..
-         ...TTTTTT.
-         ....T.....
-         ...TTT....`
+         ...TTT....
+         ....TTTT..
+         ...TTTT...
+         ....T.....`
       );
     });
 
     test("to the right (against another block)", () => {
-      board.drop(Tetromino.T_SHAPE);
-      board.moveDown();
+      dropTShapeAndLock(board);
+      dropTShapeAndLock(board);
+      board.drop(ArikaTetromino.T_SHAPE);
+      moveFarLeft(board);
       board.tick();
-      board.drop(Tetromino.T_SHAPE);
-      board.moveDown();
-      board.tick();
-      board.drop(Tetromino.T_SHAPE);
-      board.moveLeft();
-      board.moveLeft();
-      board.moveLeft();
       board.rotateLeft();
       board.tick();
       board.tick();
+      board.moveRight();
       board.rotateRight();
 
       expect(board.toString()).to.equalShape(
         `..........
          ..........
-         .T..T.....
-         TTTTTT....
-         ....T.....
-         ...TTT....`
+         ...TTT....
+         .TTTT.....
+         ..TTTT....
+         ....T.....`
       );
     });
   });
