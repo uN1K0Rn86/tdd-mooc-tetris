@@ -59,6 +59,13 @@ export class Board {
       { dc: 1, dr: 0 },
     ];
 
+    for (const k of kicks) {
+      if (this.canPlace(rotated, this.activeRow + k.dr, this.activeCol + k.dc)) {
+        this.activeBlock = rotated;
+        return true;
+      }
+    }
+
     return false;
   }
 
