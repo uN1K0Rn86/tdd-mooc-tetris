@@ -55,5 +55,21 @@ describe("Falling rotating tetrominoes", () => {
          ...TTT....`
       );
     });
+
+    test("to the right", () => {
+      board.drop(Tetromino.T_SHAPE);
+      board.moveDown();
+      board.rotateRight();
+
+      console.log(board.toString());
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ..........
+         ....T.....
+         ...TTT....`
+      );
+    });
   });
 });
