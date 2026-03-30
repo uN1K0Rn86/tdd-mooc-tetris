@@ -11,6 +11,13 @@ export class ArikaTetromino implements Shape {
     [".T..", ".TT.", ".T..", "...."],
   ]);
 
+  public static readonly I_SHAPE = new ArikaTetromino([
+    ["....", "IIII", "....", "...."],
+    ["..I.", "..I.", "..I.", "..I."],
+    ["....", "IIII", "....", "...."],
+    ["..I.", "..I.", "..I.", "..I."],
+  ]);
+
   constructor(orientations: string[][], index = 0) {
     this.orientations = orientations;
     this.index = index;
