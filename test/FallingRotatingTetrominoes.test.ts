@@ -128,12 +128,38 @@ describe("Falling rotating tetrominoes", () => {
       board.tick();
       board.rotateLeft();
 
-      console.log(board.toString());
       expect(board.toString()).to.equalShape(
         `..........
          ..........
          ....T..T..
          ...TTTTTT.
+         ....T.....
+         ...TTT....`
+      );
+    });
+
+    test("to the right (against another block)", () => {
+      board.drop(Tetromino.T_SHAPE);
+      board.moveDown();
+      board.tick();
+      board.drop(Tetromino.T_SHAPE);
+      board.moveDown();
+      board.tick();
+      board.drop(Tetromino.T_SHAPE);
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      board.rotateLeft();
+      board.tick();
+      board.tick();
+      board.rotateRight();
+
+      console.log(board.toString());
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         .T..T.....
+         TTTTTT....
          ....T.....
          ...TTT....`
       );
