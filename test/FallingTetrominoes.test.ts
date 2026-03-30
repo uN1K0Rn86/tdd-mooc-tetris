@@ -2,6 +2,7 @@ import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board";
 import { Tetromino } from "../src/Tetromino";
+import { ArikaTetromino } from "../src/ArikaTetromino";
 
 function fallToBottom(board: Board) {
   for (let i = 0; i < 10; i++) {
@@ -16,11 +17,12 @@ describe("Falling tetrominoes", () => {
   });
 
   test("start from the top middle", () => {
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(ArikaTetromino.T_SHAPE);
+    console.log(board.toString());
 
     expect(board.toString()).to.equalShape(
-      `....T.....
-       ...TTT....
+      `...TTT....
+       ....T.....
        ..........
        ..........
        ..........
