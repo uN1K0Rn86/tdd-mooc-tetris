@@ -76,6 +76,16 @@ export class Board {
     }
   }
 
+  private canPlace(shape: Shape, baseRow: number, baseCol: number): boolean {
+    for (let r = 0; r < shape.height(); r++) {
+      for (let c = 0; c < shape.width(); c++) {
+        const cell = shape.cellAt(r, c);
+        if (cell === ".") continue;
+      }
+    }
+    return true;
+  }
+
   toString() {
     const view = this.cells.map((row) => [...row]);
 

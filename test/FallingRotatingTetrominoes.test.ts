@@ -38,4 +38,22 @@ describe("Falling rotating tetrominoes", () => {
       );
     });
   });
+
+  describe("cannot be rotated when there is no room", () => {
+    test.skip("to the left", () => {
+      board.drop(Tetromino.T_SHAPE);
+      board.moveDown();
+      board.rotateLeft();
+
+      console.log(board.toString());
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ..........
+         ....T.....
+         ...TTT....`
+      );
+    });
+  });
 });
