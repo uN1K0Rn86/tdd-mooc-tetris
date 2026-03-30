@@ -141,6 +141,11 @@ export class Board {
     this.activeBlock = this.activeBlock.rotateLeft();
   }
 
+  rotateRight() {
+    if (!this.activeBlock) return;
+    this.activeBlock = this.activeBlock.rotateRight();
+  }
+
   hasFalling() {
     return this.falling;
   }
