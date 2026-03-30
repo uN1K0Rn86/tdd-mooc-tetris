@@ -138,17 +138,19 @@ export class Board {
   }
 
   moveLeft() {
-    if (this.activeCol !== null && this.canMove("left")) this.activeCol -= 1;
+    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
+    if (this.canPlace(this.activeBlock, this.activeRow, this.activeCol - 1)) this.activeCol -= 1;
   }
 
   moveRight() {
-    if (this.activeCol !== null && this.canMove("right")) this.activeCol += 1;
+    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
+    if (this.canPlace(this.activeBlock, this.activeRow, this.activeCol + 1)) this.activeCol += 1;
   }
 
   moveDown() {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
 
-    while (this.canMoveDown()) {
+    while (this.canPlace(this.activeBlock, this.activeRow + 1, this.activeCol)) {
       this.tick();
     }
   }
