@@ -50,6 +50,12 @@ export class Board {
     return true;
   }
 
+  private canRotate(shape: Shape): boolean {
+    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
+
+    return true;
+  }
+
   toString() {
     const view = this.cells.map((row) => [...row]);
 

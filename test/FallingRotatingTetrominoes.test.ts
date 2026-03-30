@@ -45,7 +45,6 @@ describe("Falling rotating tetrominoes", () => {
       board.moveDown();
       board.rotateLeft();
 
-      console.log(board.toString());
       expect(board.toString()).to.equalShape(
         `..........
          ..........
@@ -61,7 +60,6 @@ describe("Falling rotating tetrominoes", () => {
       board.moveDown();
       board.rotateRight();
 
-      console.log(board.toString());
       expect(board.toString()).to.equalShape(
         `..........
          ..........
@@ -69,6 +67,28 @@ describe("Falling rotating tetrominoes", () => {
          ..........
          ....T.....
          ...TTT....`
+      );
+    });
+  });
+
+  describe("can be wall kicked when rotating", () => {
+    test.skip("to the left", () => {
+      board.drop(Tetromino.T_SHAPE);
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      board.rotateRight();
+      board.moveLeft();
+      board.rotateLeft();
+
+      console.log(board.toString());
+      expect(board.toString()).to.equalShape(
+        `.T........
+         TTT.......
+         ..........
+         ..........
+         ..........
+         ..........`
       );
     });
   });
