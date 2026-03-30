@@ -15,49 +15,6 @@ export class Board {
     this.cells = Array.from({ length: height }, () => Array(width).fill("."));
   }
 
-  private canMoveDown(): boolean {
-    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
-
-    for (let r = 0; r < this.activeBlock.height(); r++) {
-      for (let c = 0; c < this.activeBlock.width(); c++) {
-        const cell = this.activeBlock.cellAt(r, c);
-        if (cell === ".") continue;
-
-        const nextRow = this.activeRow + r + 1;
-        const col = this.activeCol + c;
-
-        if (nextRow >= this.height) return false;
-        if (col < 0 || col >= this.width) return false;
-        if (this.cells[nextRow][col] !== ".") return false;
-      }
-    }
-    return true;
-  }
-
-  private canMove(direction: string): boolean {
-    if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
-
-    for (let r = 0; r < this.activeBlock.height(); r++) {
-      for (let c = 0; c < this.activeBlock.width(); c++) {
-        const cell = this.activeBlock.cellAt(r, c);
-        if (cell === ".") continue;
-
-        const row = this.activeRow + r;
-        let colToCheck;
-        if (direction === "left") {
-          colToCheck = this.activeCol + c - 1;
-        } else {
-          colToCheck = this.activeCol + c + 1;
-        }
-
-        if (direction === "left" && colToCheck < 0) return false;
-        if (this.cells[row][colToCheck] !== ".") return false;
-        if (direction === "right" && colToCheck >= this.width) return false;
-      }
-    }
-    return true;
-  }
-
   private lockActiveBlock() {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
 
@@ -125,7 +82,7 @@ export class Board {
   tick() {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return;
 
-    if (this.canMoveDown()) {
+    if (this.canPlace(this.activeBlock, this.activeRow + 1, this.activeCol)) {
       this.activeRow += 1;
       return;
     }
