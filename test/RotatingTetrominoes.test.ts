@@ -1,8 +1,9 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
 import { Tetromino } from "../src/Tetromino";
+import { ArikaTetromino } from "../src/ArikaTetromino";
 
-function distinctOrientations(shape: Tetromino) {
+function distinctOrientations(shape: ArikaTetromino) {
   const distinct = new Set();
   let goingRight = shape;
   let goingLeft = shape;
@@ -16,29 +17,33 @@ function distinctOrientations(shape: Tetromino) {
 }
 
 describe("The T shape", () => {
-  const shape = Tetromino.T_SHAPE;
+  const shape = ArikaTetromino.T_SHAPE;
 
   test("initial orientation", () => {
     expect(shape.toString()).to.equalShape(
-      `.T.
-       TTT
-       ...`
+      `....
+       TTT.
+       .T..
+       ....`
     );
   });
 
   test("can be rotated right/clockwise", () => {
+    console.log(shape.rotateRight().toString());
     expect(shape.rotateRight().toString()).to.equalShape(
-      `.T.
-       .TT
-       .T.`
+      `.T..
+       TT..
+       .T..
+       ....`
     );
   });
 
   test("can be rotated left/counter-clockwise", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
-      `.T.
-       TT.
-       .T.`
+      `.T..
+       .TT.
+       .T..
+       ....`
     );
   });
 
