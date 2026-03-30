@@ -110,5 +110,33 @@ describe("Falling rotating tetrominoes", () => {
          ..........`
       );
     });
+
+    test("to the left (against another block)", () => {
+      board.drop(Tetromino.T_SHAPE);
+      board.moveDown();
+      board.tick();
+      board.drop(Tetromino.T_SHAPE);
+      board.moveDown();
+      board.tick();
+      board.drop(Tetromino.T_SHAPE);
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      board.rotateRight();
+      board.moveLeft();
+      board.tick();
+      board.tick();
+      board.rotateLeft();
+
+      console.log(board.toString());
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ....T..T..
+         ...TTTTTT.
+         ....T.....
+         ...TTT....`
+      );
+    });
   });
 });
