@@ -40,7 +40,7 @@ describe("Falling rotating tetrominoes", () => {
   });
 
   describe("cannot be rotated when there is no room", () => {
-    test.skip("to the left", () => {
+    test("to the left", () => {
       board.drop(Tetromino.T_SHAPE);
       board.moveDown();
       board.rotateLeft();
