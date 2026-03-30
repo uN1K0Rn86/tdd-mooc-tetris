@@ -1,12 +1,23 @@
 import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board";
-import { Tetromino } from "../src/Tetromino";
 import { ArikaTetromino } from "../src/ArikaTetromino";
 
 function fallToBottom(board: Board) {
   for (let i = 0; i < 10; i++) {
     board.tick();
+  }
+}
+
+function moveFarLeft(board: Board) {
+  for (let i = 0; i < 10; i++) {
+    board.moveLeft();
+  }
+}
+
+function moveFarRight(board: Board) {
+  for (let i = 0; i < 10; i++) {
+    board.moveRight();
   }
 }
 
@@ -123,10 +134,7 @@ describe("Moving falling tetrominoes", () => {
 
   describe("cannot be moved beyond the board", () => {
     test("to the left", () => {
-      board.moveLeft();
-      board.moveLeft();
-      board.moveLeft();
-      board.moveLeft();
+      moveFarLeft(board);
 
       expect(board.toString()).to.equalShape(
         `TTT.......
@@ -139,11 +147,7 @@ describe("Moving falling tetrominoes", () => {
     });
 
     test("to the right", () => {
-      board.moveRight();
-      board.moveRight();
-      board.moveRight();
-      board.moveRight();
-      board.moveRight();
+      moveFarRight(board);
 
       expect(board.toString()).to.equalShape(
         `.......TTT
@@ -172,9 +176,7 @@ describe("Moving falling tetrominoes", () => {
 
   describe("cannot be moved through other blocks", () => {
     test("to the left", () => {
-      board.moveLeft();
-      board.moveLeft();
-      board.moveLeft();
+      moveFarLeft(board);
       board.moveDown();
       board.tick();
       board.drop(ArikaTetromino.T_SHAPE);
@@ -192,13 +194,12 @@ describe("Moving falling tetrominoes", () => {
     });
 
     test("to the right", () => {
-      board.moveRight();
-      board.moveRight();
-      board.moveRight();
+      moveFarRight(board);
       board.moveDown();
       board.tick();
       board.drop(ArikaTetromino.T_SHAPE);
       board.moveDown();
+      board.moveRight();
       board.moveRight();
 
       expect(board.toString()).to.equalShape(
@@ -206,8 +207,8 @@ describe("Moving falling tetrominoes", () => {
          ..........
          ..........
          ..........
-         ...TTTTTT.
-         ....T..T..`
+         ....TTTTTT
+         .....T..T.`
       );
     });
 
