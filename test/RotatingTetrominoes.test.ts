@@ -1,6 +1,5 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
-import { Tetromino } from "../src/Tetromino";
 import { ArikaTetromino } from "../src/ArikaTetromino";
 
 function distinctOrientations(shape: ArikaTetromino) {
@@ -29,7 +28,6 @@ describe("The T shape", () => {
   });
 
   test("can be rotated right/clockwise", () => {
-    console.log(shape.rotateRight().toString());
     expect(shape.rotateRight().toString()).to.equalShape(
       `.T..
        TT..

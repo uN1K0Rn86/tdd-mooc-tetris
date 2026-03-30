@@ -2,6 +2,7 @@ import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board";
 import { Tetromino } from "../src/Tetromino";
+import { ArikaTetromino } from "../src/ArikaTetromino";
 
 describe("Falling rotating tetrominoes", () => {
   let board: Board;
@@ -11,12 +12,13 @@ describe("Falling rotating tetrominoes", () => {
 
   describe("can be rotated", () => {
     test("to the left", () => {
-      board.drop(Tetromino.T_SHAPE);
+      board.drop(ArikaTetromino.T_SHAPE);
+      board.tick();
       board.rotateLeft();
 
       expect(board.toString()).to.equalShape(
         `....T.....
-         ...TT.....
+         ....TT....
          ....T.....
          ..........
          ..........
