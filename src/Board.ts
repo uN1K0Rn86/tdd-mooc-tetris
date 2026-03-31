@@ -33,6 +33,7 @@ export class Board {
       }
     }
 
+    this.clearLines();
     this.falling = false;
     this.activeBlock = null;
     this.activeRow = null;
