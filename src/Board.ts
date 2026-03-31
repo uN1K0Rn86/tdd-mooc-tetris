@@ -65,6 +65,8 @@ export class Board {
       const nextCol = this.activeCol + k.dc;
 
       if (this.canPlace(rotated, nextRow, nextCol)) {
+        if (this.activeBlock instanceof ArikaTetromino && this.activeBlock.variant === "I" && k.dc !== 0) return false;
+
         this.activeBlock = rotated;
         this.activeRow = nextRow;
         this.activeCol = nextCol;
