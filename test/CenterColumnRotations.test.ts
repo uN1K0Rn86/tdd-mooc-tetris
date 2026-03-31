@@ -415,4 +415,66 @@ describe("Center column rotations", () => {
       );
     });
   });
+
+  describe("for the T-Shape", () => {
+    test("fail when the 2-square is occupied (left rotation)", () => {
+      xShapeToMiddle(board);
+      shapeBelowX(ArikaTetromino.T_SHAPE, board, false);
+      board.rotateLeft();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....X.....
+         ...TTT....
+         ....T.....`
+      );
+    });
+
+    test("fail when the 2-square is occupied (right rotation)", () => {
+      xShapeToMiddle(board);
+      shapeBelowX(ArikaTetromino.T_SHAPE, board, false);
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....X.....
+         ...TTT....
+         ....T.....`
+      );
+    });
+
+    test("fail when the 2-square is occupied (upside down, left rotation)", () => {
+      xShapeToMiddle(board);
+      shapeBelowX(ArikaTetromino.T_SHAPE, board, true);
+      board.rotateLeft();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....X.....
+         ....T.....
+         ...TTT....`
+      );
+    });
+
+    test("fail when the 2-square is occupied (upside down, right rotation)", () => {
+      xShapeToMiddle(board);
+      shapeBelowX(ArikaTetromino.T_SHAPE, board, true);
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....X.....
+         ....T.....
+         ...TTT....`
+      );
+    });
+  });
 });
