@@ -17,6 +17,13 @@ export function iShapeToRightWall(board: Board) {
   moveFarRight(board);
 }
 
+export function iShapeToLeftWall(board: Board) {
+  board.drop(ArikaTetromino.I_SHAPE);
+  board.tick();
+  board.rotateLeft();
+  moveFarLeft(board);
+}
+
 describe("Falling rotating tetrominoes", () => {
   let board: Board;
   beforeEach(() => {
@@ -167,7 +174,7 @@ describe("Falling rotating tetrominoes", () => {
   });
 
   describe("I-SHAPE", () => {
-    test.only("doesn't kick to the left when rotating right", () => {
+    test("doesn't kick to the left when rotating right", () => {
       iShapeToRightWall(board);
       board.rotateRight();
 
@@ -176,6 +183,48 @@ describe("Falling rotating tetrominoes", () => {
          .........I
          .........I
          .........I
+         ..........
+         ..........`
+      );
+    });
+
+    test("doesn't kick to the left when rotating left", () => {
+      iShapeToRightWall(board);
+      board.rotateLeft();
+
+      expect(board.toString()).to.equalShape(
+        `.........I
+         .........I
+         .........I
+         .........I
+         ..........
+         ..........`
+      );
+    });
+
+    test("doesn't kick to the right when rotating right", () => {
+      iShapeToLeftWall(board);
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `I.........
+         I.........
+         I.........
+         I.........
+         ..........
+         ..........`
+      );
+    });
+
+    test("doesn't kick to the right when rotating left", () => {
+      iShapeToLeftWall(board);
+      board.rotateLeft();
+
+      expect(board.toString()).to.equalShape(
+        `I.........
+         I.........
+         I.........
+         I.........
          ..........
          ..........`
       );
