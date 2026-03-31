@@ -1,4 +1,5 @@
 import { beforeEach, describe, test } from "vitest";
+import { expect } from "chai";
 import { Board } from "../src/Board";
 import { XShape } from "../src/XShape";
 import { ArikaTetromino } from "../src/ArikaTetromino";
@@ -11,17 +12,29 @@ export function xShapeToMiddle(board: Board) {
   (board as any).lockActiveBlock();
 }
 
-describe("Center column rotations: ", () => {
+describe("Center column rotations", () => {
   let board: Board;
   beforeEach(() => {
     board = new Board(10, 6);
   });
 
-  describe("L-Shape: ", () => {
-    test("fail when 8-square is occupied", () => {
+  describe("for the L-Shape", () => {
+    test("fail when 8-square is occupied (left)", () => {
       xShapeToMiddle(board);
       board.drop(ArikaTetromino.L_SHAPE);
+      board.tick();
+      board.tick();
+      board.rotateLeft();
       console.log(board.toString());
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ...LLL....
+         ...LX.....
+         ..........
+         ..........`
+      );
     });
   });
 });

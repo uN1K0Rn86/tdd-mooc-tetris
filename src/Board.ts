@@ -56,6 +56,16 @@ export class Board {
     return true;
   }
 
+  private isValidCenterColumn(shape: Shape, baseRow: number, baseCol: number): boolean {
+    const found = false;
+    for (let r = 0; r < shape.height(); r++) {
+      for (let c = 0; c < shape.width(); c++) {
+        const boardRow = baseRow + r;
+        const boardCol = baseCol + c;
+      }
+    }
+  }
+
   private tryRotate(rotated: Shape): boolean {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
 
