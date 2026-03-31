@@ -206,5 +206,29 @@ describe("Center column rotations", () => {
          .....XL...`
       );
     });
+
+    test("fail when 1- and 8-squares are occupied (left rotation)", () => {
+      xShapeToMiddle(board);
+      board.drop(new XShape());
+      board.moveRight();
+      board.tick();
+      board.tick();
+      board.tick();
+      board.tick();
+      board.tick();
+      (board as any).lockActiveBlock();
+      shapeBelowX(ArikaTetromino.L_SHAPE, board, false);
+      board.moveRight();
+      board.rotateLeft();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....X.....
+         ....LLL...
+         ....LX....`
+      );
+    });
   });
 });
