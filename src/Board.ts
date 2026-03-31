@@ -57,13 +57,17 @@ export class Board {
   }
 
   private isValidCenterColumn(shape: Shape, baseRow: number, baseCol: number): boolean {
-    const found = false;
     for (let r = 0; r < shape.height(); r++) {
       for (let c = 0; c < shape.width(); c++) {
         const boardRow = baseRow + r;
         const boardCol = baseCol + c;
+        if (this.cells[boardRow][boardCol] !== ".") {
+          if (c !== 1) return true;
+          if (c === 1) return false;
+        }
       }
     }
+    return true;
   }
 
   private tryRotate(rotated: Shape): boolean {
@@ -81,6 +85,11 @@ export class Board {
 
       if (this.canPlace(rotated, nextRow, nextCol)) {
         if (this.activeBlock instanceof ArikaTetromino && this.activeBlock.variant === "I" && k.dc !== 0) return false;
+        if (
+          this.activeBlock instanceof ArikaTetromino &&
+          (this.activeBlock.variant === "T" || this.activeBlock.variant === "J" || this.activeBlock.variant === "L")
+        )
+          if (!this.isValidCenterColumn(this.activeBlock, this.activeRow, this.activeCol)) return false;
 
         this.activeBlock = rotated;
         this.activeRow = nextRow;

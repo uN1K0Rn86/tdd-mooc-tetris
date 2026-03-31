@@ -25,7 +25,6 @@ describe("Center column rotations", () => {
       board.tick();
       board.tick();
       board.rotateLeft();
-      console.log(board.toString());
 
       expect(board.toString()).to.equalShape(
         `..........
