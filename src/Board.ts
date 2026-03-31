@@ -32,6 +32,11 @@ export class Board {
         }
       }
     }
+
+    this.falling = false;
+    this.activeBlock = null;
+    this.activeRow = null;
+    this.activeCol = null;
   }
 
   private canPlace(shape: Shape, baseRow: number, baseCol: number): boolean {
@@ -124,10 +129,6 @@ export class Board {
     }
 
     this.lockActiveBlock();
-    this.falling = false;
-    this.activeBlock = null;
-    this.activeRow = null;
-    this.activeCol = null;
   }
 
   moveLeft() {
