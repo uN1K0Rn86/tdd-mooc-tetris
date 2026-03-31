@@ -16,11 +16,12 @@ function fillAllButRight(board: Board) {
   }
 }
 
-describe("Line", () => {
+describe("Line(s)", () => {
   let board: Board;
   beforeEach(() => {
     board = new Board(10, 6);
   });
+
   test("is cleared when filled by a block", () => {
     fillAllButRight(board);
     board.drop(ArikaTetromino.T_SHAPE);
@@ -34,7 +35,6 @@ describe("Line", () => {
     board.moveDown();
     board.tick();
 
-    console.log(board.toString());
     expect(board.toString()).to.equalShape(
       `..........
        ..........
@@ -42,6 +42,29 @@ describe("Line", () => {
        ..........
        .........T
        ........TT`
+    );
+  });
+
+  test("2 lines are cleared when filled simultaneously", () => {
+    fillAllButRight(board);
+    fillAllButRight(board);
+    board.drop(ArikaTetromino.I_SHAPE);
+    board.tick();
+    board.rotateRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveDown();
+    board.tick();
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ..........
+       .........I
+       .........I`
     );
   });
 });
