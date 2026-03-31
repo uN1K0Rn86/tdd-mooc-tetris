@@ -13,10 +13,15 @@ export function xShapeToMiddle(board: Board) {
   (board as any).lockActiveBlock();
 }
 
-export function shapeBelowX(shape: Shape, board: Board, rotated: boolean) {
+export function shapeBelowX(shape: ArikaTetromino, board: Board, rotated: boolean) {
   board.drop(shape);
-  board.moveLeft();
-  board.moveLeft();
+  if (shape.variant === "L") {
+    board.moveLeft();
+    board.moveLeft();
+  } else {
+    board.moveRight();
+    board.moveRight();
+  }
   board.tick();
   board.tick();
   if (rotated) {
@@ -25,8 +30,13 @@ export function shapeBelowX(shape: Shape, board: Board, rotated: boolean) {
   }
   board.tick();
   board.tick();
-  board.moveRight();
-  board.moveRight();
+  if (shape.variant === "L") {
+    board.moveRight();
+    board.moveRight();
+  } else {
+    board.moveLeft();
+    board.moveLeft();
+  }
 }
 
 export function blockedFiveSquare(shape: ArikaTetromino, board: Board) {
@@ -354,6 +364,54 @@ describe("Center column rotations", () => {
          ...JX.....
          ...JJJ....
          ..........`
+      );
+    });
+
+    test("succeed when 3- and 8-squares are occupied (left rotation)", () => {
+      xShapeToMiddle(board);
+      board.drop(new XShape());
+      board.moveLeft();
+      board.tick();
+      board.tick();
+      board.tick();
+      board.tick();
+      board.tick();
+      (board as any).lockActiveBlock();
+      shapeBelowX(ArikaTetromino.J_SHAPE, board, false);
+      board.moveLeft();
+      board.rotateLeft();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ..JJX.....
+         ..J.......
+         ..JX......`
+      );
+    });
+
+    test("fail when 3- and 8-squares are occupied (right rotation)", () => {
+      xShapeToMiddle(board);
+      board.drop(new XShape());
+      board.moveLeft();
+      board.tick();
+      board.tick();
+      board.tick();
+      board.tick();
+      board.tick();
+      (board as any).lockActiveBlock();
+      shapeBelowX(ArikaTetromino.J_SHAPE, board, false);
+      board.moveLeft();
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....X.....
+         ..JJJ.....
+         ...XJ.....`
       );
     });
   });
