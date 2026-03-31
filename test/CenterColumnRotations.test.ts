@@ -231,4 +231,40 @@ describe("Center column rotations", () => {
       );
     });
   });
+
+  describe("for the J-Shape", () => {
+    test("fail when the 8-square is occupied (left rotation)", () => {
+      xShapeToMiddle(board);
+      board.drop(ArikaTetromino.J_SHAPE);
+      board.tick();
+      board.tick();
+      board.rotateLeft();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ...JJJ....
+         ....XJ....
+         ..........
+         ..........`
+      );
+    });
+
+    test("fail when the 8-square is occupied (right rotation)", () => {
+      xShapeToMiddle(board);
+      board.drop(ArikaTetromino.J_SHAPE);
+      board.tick();
+      board.tick();
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ...JJJ....
+         ....XJ....
+         ..........
+         ..........`
+      );
+    });
+  });
 });
