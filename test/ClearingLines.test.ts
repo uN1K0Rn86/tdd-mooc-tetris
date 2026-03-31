@@ -16,7 +16,7 @@ function fillAllButRight(board: Board) {
   }
 }
 
-describe("Line(s)", () => {
+describe("Clearing lines: ", () => {
   let board: Board;
   beforeEach(() => {
     board = new Board(10, 10);
@@ -73,6 +73,39 @@ describe("Line(s)", () => {
        ..........
        .........I
        .........I`
+    );
+  });
+
+  test("lines are not cleared when ticking but not locking in place", () => {
+    fillAllButRight(board);
+    fillAllButRight(board);
+    fillAllButRight(board);
+    fillAllButRight(board);
+    fillAllButRight(board);
+    fillAllButRight(board);
+    board.drop(ArikaTetromino.I_SHAPE);
+    board.tick();
+    board.rotateLeft();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.tick();
+    board.tick();
+    board.tick();
+    board.tick();
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ..........
+       XXXXXXXXXI
+       XXXXXXXXXI
+       XXXXXXXXXI
+       XXXXXXXXXI
+       XXXXXXXXX.
+       XXXXXXXXX.`
     );
   });
 });
