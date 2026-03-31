@@ -10,6 +10,13 @@ export function dropTShapeAndLock(board: Board) {
   board.tick();
 }
 
+export function iShapeToRightWall(board: Board) {
+  board.drop(ArikaTetromino.I_SHAPE);
+  board.tick();
+  board.rotateLeft();
+  moveFarRight(board);
+}
+
 describe("Falling rotating tetrominoes", () => {
   let board: Board;
   beforeEach(() => {
@@ -155,6 +162,22 @@ describe("Falling rotating tetrominoes", () => {
          .TTTT.....
          ..TTTT....
          ....T.....`
+      );
+    });
+  });
+
+  describe("I-SHAPE", () => {
+    test("doesn't kick to the left when rotating right", () => {
+      iShapeToRightWall(board);
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `.........I
+         .........I
+         .........I
+         .........I
+         ..........
+         ..........`
       );
     });
   });
