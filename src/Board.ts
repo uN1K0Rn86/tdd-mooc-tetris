@@ -39,6 +39,18 @@ export class Board {
     this.activeCol = null;
   }
 
+  private clearLines() {
+    for (let r = this.height - 1; r >= 0; r--) {
+      if (this.cells[r].every((c) => c !== ".")) {
+        for (let newRow = r; newRow > 0; newRow--) {
+          this.cells[newRow] = [...this.cells[newRow - 1]];
+        }
+        this.cells[0] = Array(this.width).fill(".");
+        r++;
+      }
+    }
+  }
+
   private canPlace(shape: Shape, baseRow: number, baseCol: number): boolean {
     for (let r = 0; r < shape.height(); r++) {
       for (let c = 0; c < shape.width(); c++) {
