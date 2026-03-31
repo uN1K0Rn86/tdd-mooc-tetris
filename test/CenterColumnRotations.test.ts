@@ -13,16 +13,43 @@ export function xShapeToMiddle(board: Board) {
   (board as any).lockActiveBlock();
 }
 
-export function shapeBelowX(shape: Shape, board: Board) {
+export function shapeBelowX(shape: Shape, board: Board, rotated: boolean) {
   board.drop(shape);
   board.moveLeft();
   board.moveLeft();
   board.tick();
   board.tick();
+  if (rotated) {
+    board.rotateLeft();
+    board.rotateLeft();
+  }
   board.tick();
   board.tick();
   board.moveRight();
   board.moveRight();
+}
+
+export function blockedFiveSquare(shape: ArikaTetromino, board: Board) {
+  board.drop(shape);
+  if (shape.variant === "L") {
+    board.moveRight();
+    board.moveRight();
+  } else {
+    board.moveLeft();
+    board.moveLeft();
+  }
+  board.tick();
+  board.tick();
+  board.rotateRight();
+  board.rotateRight();
+  board.tick();
+  if (shape.variant === "L") {
+    board.moveLeft();
+    board.moveLeft();
+  } else {
+    board.moveRight();
+    board.moveRight();
+  }
 }
 
 describe("Center column rotations", () => {
@@ -68,7 +95,7 @@ describe("Center column rotations", () => {
 
     test("fail when 2-square is occupied (left)", () => {
       xShapeToMiddle(board);
-      shapeBelowX(ArikaTetromino.L_SHAPE, board);
+      shapeBelowX(ArikaTetromino.L_SHAPE, board, false);
       board.rotateLeft();
 
       expect(board.toString()).to.equalShape(
@@ -83,7 +110,7 @@ describe("Center column rotations", () => {
 
     test("fail when 2-square is occupied (right)", () => {
       xShapeToMiddle(board);
-      shapeBelowX(ArikaTetromino.L_SHAPE, board);
+      shapeBelowX(ArikaTetromino.L_SHAPE, board, false);
       board.rotateRight();
 
       expect(board.toString()).to.equalShape(
@@ -93,6 +120,90 @@ describe("Center column rotations", () => {
          ....X.....
          ...LLL....
          ...L......`
+      );
+    });
+
+    test("fail when 2-square is occupied (upside-down piece, left rotation)", () => {
+      xShapeToMiddle(board);
+      shapeBelowX(ArikaTetromino.L_SHAPE, board, true);
+      board.rotateLeft();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....X.....
+         .....L....
+         ...LLL....`
+      );
+    });
+
+    test("fail when 2-square is occupied (upside-down piece, right rotation)", () => {
+      xShapeToMiddle(board);
+      shapeBelowX(ArikaTetromino.L_SHAPE, board, true);
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....X.....
+         .....L....
+         ...LLL....`
+      );
+    });
+
+    test("fail when the 5-square is occupied (left rotation)", () => {
+      xShapeToMiddle(board);
+      blockedFiveSquare(ArikaTetromino.L_SHAPE, board);
+      board.rotateLeft();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....XL....
+         ...LLL....
+         ..........`
+      );
+    });
+
+    test("fail when the 5-square is occupied (right rotation)", () => {
+      xShapeToMiddle(board);
+      blockedFiveSquare(ArikaTetromino.L_SHAPE, board);
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....XL....
+         ...LLL....
+         ..........`
+      );
+    });
+
+    test("succeed when 1- and 8-squares are occupied (right rotation)", () => {
+      xShapeToMiddle(board);
+      board.drop(new XShape());
+      board.moveRight();
+      board.tick();
+      board.tick();
+      board.tick();
+      board.tick();
+      board.tick();
+      (board as any).lockActiveBlock();
+      shapeBelowX(ArikaTetromino.L_SHAPE, board, false);
+      board.moveRight();
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ....XLL...
+         ......L...
+         .....XL...`
       );
     });
   });
