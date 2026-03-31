@@ -35,5 +35,22 @@ describe("Center column rotations", () => {
          ..........`
       );
     });
+
+    test("fail when 8-square is occupied (right)", () => {
+      xShapeToMiddle(board);
+      board.drop(ArikaTetromino.L_SHAPE);
+      board.tick();
+      board.tick();
+      board.rotateRight();
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ...LLL....
+         ...LX.....
+         ..........
+         ..........`
+      );
+    });
   });
 });
