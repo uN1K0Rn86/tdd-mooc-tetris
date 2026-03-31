@@ -55,8 +55,8 @@ export class Board {
 
     const kicks = [
       { dc: 0, dr: 0 },
-      { dc: -1, dr: 0 },
       { dc: 1, dr: 0 },
+      { dc: -1, dr: 0 },
     ];
 
     for (const k of kicks) {
