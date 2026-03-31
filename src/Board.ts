@@ -1,3 +1,4 @@
+import { ArikaTetromino } from "./ArikaTetromino";
 import { Shape } from "./Shape";
 
 export class Board {

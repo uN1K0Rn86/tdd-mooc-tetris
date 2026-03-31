@@ -87,23 +87,27 @@ export class ArikaTetromino implements Shape {
 
   rotateRight(): ArikaTetromino {
     const nextIndex = (this.index + 1) % this.orientations.length;
-    return new ArikaTetromino(this.orientations, nextIndex);
+    return new ArikaTetromino(this.orientations, this.variant, nextIndex);
   }
 
   rotateLeft(): ArikaTetromino {
     const previousIndex = (this.index - 1 + this.orientations.length) % this.orientations.length;
-    return new ArikaTetromino(this.orientations, previousIndex);
+    return new ArikaTetromino(this.orientations, this.variant, previousIndex);
   }
 
   width(): number {
-    return this.orientations[this.index].length;
+    return this.orientations[this.index][0].length;
   }
 
   height(): number {
-    return this.orientations.length;
+    return this.orientations[this.index].length;
   }
 
   cellAt(row: number, col: number): string {
     return this.orientations[this.index][row][col];
+  }
+
+  type(): string {
+    return this.variant;
   }
 }

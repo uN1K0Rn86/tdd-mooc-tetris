@@ -169,7 +169,9 @@ describe("Falling rotating tetrominoes", () => {
   describe("I-SHAPE", () => {
     test("doesn't kick to the left when rotating right", () => {
       iShapeToRightWall(board);
+      console.log(board.toString());
       board.rotateRight();
+      console.log(board.toString());
 
       expect(board.toString()).to.equalShape(
         `.........I
