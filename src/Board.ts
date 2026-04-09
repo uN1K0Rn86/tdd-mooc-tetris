@@ -220,4 +220,8 @@ export class Board {
   hasFalling() {
     return this.falling;
   }
+
+  levelUp() {
+    this.level += 1;
+  }
 }

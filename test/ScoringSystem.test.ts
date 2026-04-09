@@ -5,6 +5,7 @@ import { fallToBottom } from "./FallingTetrominoes.test";
 import { XShape } from "../src/XShape";
 import { NintendoScoringSystem } from "../src/NintendoScoringSystem";
 import { ArikaTetromino } from "../src/ArikaTetromino";
+import { ScoringSystem } from "../src/ScoringSystem";
 
 export function triggerLineClear(board: Board) {
   fillAllButRight(board);
@@ -26,6 +27,10 @@ export function clearNLines(board: Board, n: number) {
     board.moveRight();
   }
   fallToBottom(board);
+}
+
+export function resetPoints(scoringSystem: ScoringSystem) {
+  scoringSystem.points = 0;
 }
 
 describe("Observers for Board", () => {
@@ -98,5 +103,14 @@ describe("Nintendo scoring system", () => {
   it("adds 1200 points for clearing 4 lines on level 0", () => {
     clearNLines(board, 4);
     expect(scoringSystem.points).toBe(1200);
+  });
+
+  it("adds 40 * (n+1) points for clearing 1 lines on level n", () => {
+    for (let n = 0; n < 100; n++) {
+      triggerLineClear(board);
+      expect(scoringSystem.points).toBe(40 * (n + 1));
+      resetPoints(scoringSystem);
+      board.levelUp();
+    }
   });
 });
