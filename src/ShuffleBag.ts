@@ -7,10 +7,17 @@ export class ShuffleBag {
   ) {}
 
   next() {
-    if (this.currentPosition < 1) {
+    if (this.currentPosition < 0) {
       this.currentPosition = this.pieces.length - 1;
     }
-    return this.pieces[0];
+
+    let pos = Math.floor(Math.random() * this.currentPosition);
+    const currentItem = this.pieces[pos];
+    this.pieces[pos] = this.pieces[this.currentPosition];
+    this.pieces[this.currentPosition] = currentItem;
+    this.currentPosition--;
+
+    return currentItem;
   }
 
   add(piece: Shape, count: number) {
