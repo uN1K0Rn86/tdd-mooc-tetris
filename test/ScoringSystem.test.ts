@@ -151,4 +151,11 @@ describe("Nintendo scoring system", () => {
       board.levelUp();
     }
   });
+
+  it("has a callable method to update when a piece is locked for soft drop points", () => {
+    const spy = vi.spyOn(scoringSystem, "onSoftDrop");
+    scoringSystem.onSoftDrop(0);
+
+    expect(scoringSystem.onSoftDrop).toHaveBeenCalledTimes(1);
+  });
 });

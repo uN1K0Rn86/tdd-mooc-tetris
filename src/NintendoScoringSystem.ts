@@ -20,4 +20,8 @@ export class NintendoScoringSystem implements ScoringSystem {
         break;
     }
   }
+
+  onSoftDrop(moves: number) {
+    this.points += moves;
+  }
 }
