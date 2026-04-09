@@ -33,6 +33,14 @@ export function resetPoints(scoringSystem: ScoringSystem) {
   scoringSystem.points = 0;
 }
 
+export function resetBoard(board: Board) {
+  for (const row of (board as any).cells) {
+    for (let i = 0; i < row.length; i++) {
+      row[i] = ".";
+    }
+  }
+}
+
 describe("Observers for Board", () => {
   let board: Board;
   beforeEach(() => {
@@ -110,6 +118,16 @@ describe("Nintendo scoring system", () => {
       triggerLineClear(board);
       expect(scoringSystem.points).toBe(40 * (n + 1));
       resetPoints(scoringSystem);
+      board.levelUp();
+    }
+  });
+
+  it("adds 100 * (n+1) points for clearing 2 lines on level n", () => {
+    for (let n = 0; n < 100; n++) {
+      clearNLines(board, 2);
+      expect(scoringSystem.points).toBe(100 * (n + 1));
+      resetPoints(scoringSystem);
+      resetBoard(board);
       board.levelUp();
     }
   });
