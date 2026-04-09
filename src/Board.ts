@@ -12,6 +12,7 @@ export class Board {
   private activeCol: number | null = null;
   private subscribers: ScoringSystem[] = [];
   private level: number = 0;
+  private softDropMoves: number = 0;
 
   constructor(width: number, height: number) {
     this.width = width;
@@ -37,6 +38,7 @@ export class Board {
     }
 
     this.clearLines();
+    this.notifyOnSoftDrop();
     this.falling = false;
     this.activeBlock = null;
     this.activeRow = null;
@@ -139,6 +141,12 @@ export class Board {
     }
   }
 
+  private notifyOnSoftDrop() {
+    for (const subscriber of this.subscribers) {
+      subscriber.onSoftDrop(this.softDropMoves);
+    }
+  }
+
   addObserver(observer: ScoringSystem) {
     this.subscribers = this.subscribers.concat(observer);
   }
@@ -202,6 +210,7 @@ export class Board {
 
     if (this.canPlace(this.activeBlock, this.activeRow + 1, this.activeCol)) {
       this.activeRow = this.activeRow + 1;
+      this.softDropMoves += 1;
     }
   }
 

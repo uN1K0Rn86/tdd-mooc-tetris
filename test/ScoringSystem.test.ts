@@ -158,4 +158,12 @@ describe("Nintendo scoring system", () => {
 
     expect(scoringSystem.onSoftDrop).toHaveBeenCalledTimes(1);
   });
+
+  it("is notified when a piece is locked", () => {
+    const spy = vi.spyOn(scoringSystem, "onSoftDrop");
+    board.drop(ArikaTetromino.I_SHAPE);
+    fallToBottom(board);
+
+    expect(scoringSystem.onSoftDrop).toHaveBeenCalled();
+  });
 });
