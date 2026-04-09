@@ -174,4 +174,27 @@ describe("Nintendo scoring system", () => {
 
     expect(scoringSystem.points).toBe(1);
   });
+
+  it("adds 4 points when piece has been soft dropped 4 grid spaces", () => {
+    board.drop(ArikaTetromino.I_SHAPE);
+    board.moveDown();
+    board.moveDown();
+    board.moveDown();
+    board.moveDown();
+    fallToBottom(board);
+
+    expect(scoringSystem.points).toBe(4);
+  });
+
+  it("adds points for clearing lines and soft dropping, 1 each", () => {
+    fillAllButRight(board);
+    board.drop(new XShape());
+    board.moveDown();
+    for (let i = 0; i < 10; i++) {
+      board.moveRight();
+    }
+    fallToBottom(board);
+
+    expect(scoringSystem.points).toBe(41);
+  });
 });
