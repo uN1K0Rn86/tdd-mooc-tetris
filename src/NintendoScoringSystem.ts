@@ -1,7 +1,7 @@
 import { ScoringSystem } from "./ScoringSystem";
 
 export class NintendoScoringSystem implements ScoringSystem {
-  onLineClear() {
+  onLineClear(lines: number) {
     return;
   }
 }

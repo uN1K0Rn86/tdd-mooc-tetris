@@ -1,3 +1,3 @@
 export interface ScoringSystem {
-  onLineClear(): void;
+  onLineClear(lines: number): void;
 }

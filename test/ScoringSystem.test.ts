@@ -40,12 +40,15 @@ describe("Observers for Board", () => {
 
 describe("Nintendo scoring system", () => {
   let scoringSystem: NintendoScoringSystem;
+  let board: Board;
   beforeEach(() => {
     scoringSystem = new NintendoScoringSystem();
+    board = new Board(10, 10);
   });
+
   it("has a callable method to update when lines are cleared", () => {
     const spy = vi.spyOn(scoringSystem, "onLineClear");
-    scoringSystem.onLineClear();
+    scoringSystem.onLineClear(1);
 
     expect(scoringSystem.onLineClear).toHaveBeenCalledTimes(1);
   });
