@@ -5,7 +5,7 @@ import { XShape } from "../src/XShape";
 import { ArikaTetromino } from "../src/ArikaTetromino";
 import { fallToBottom } from "./FallingTetrominoes.test";
 
-function fillAllButRight(board: Board) {
+export function fillAllButRight(board: Board) {
   for (let col = 0; col < board.width - 1; col++) {
     board.drop(new XShape());
     while ((board as any).activeCol !== col && (board as any).activeRow !== null) {
@@ -22,7 +22,7 @@ describe("Clearing lines: ", () => {
     board = new Board(10, 10);
   });
 
-  test("is cleared when filled by a block", () => {
+  test("line is cleared when filled by a block", () => {
     fillAllButRight(board);
     board.drop(ArikaTetromino.T_SHAPE);
     board.tick();

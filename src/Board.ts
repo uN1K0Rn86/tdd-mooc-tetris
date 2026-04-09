@@ -9,6 +9,7 @@ export class Board {
   private activeBlock: Shape | null = null;
   private activeRow: number | null = null;
   private activeCol: number | null = null;
+  private subscribers = [];
 
   constructor(width: number, height: number) {
     this.width = width;
@@ -125,6 +126,10 @@ export class Board {
       }
     }
     return 0;
+  }
+
+  addObserver(observer) {
+    this.subscribers = this.subscribers.concat(observer);
   }
 
   toString() {
