@@ -4,10 +4,23 @@ import { fillAllButRight } from "./ClearingLines.test";
 import { fallToBottom } from "./FallingTetrominoes.test";
 import { XShape } from "../src/XShape";
 import { NintendoScoringSystem } from "../src/NintendoScoringSystem";
+import { ArikaTetromino } from "../src/ArikaTetromino";
 
 export function triggerLineClear(board: Board) {
   fillAllButRight(board);
   board.drop(new XShape());
+  for (let i = 0; i < 10; i++) {
+    board.moveRight();
+  }
+  fallToBottom(board);
+}
+
+export function clearTwoLines(board: Board) {
+  fillAllButRight(board);
+  fillAllButRight(board);
+  board.drop(ArikaTetromino.I_SHAPE);
+  board.tick();
+  board.rotateLeft();
   for (let i = 0; i < 10; i++) {
     board.moveRight();
   }
@@ -21,14 +34,14 @@ describe("Observers for Board", () => {
   });
 
   it("can be added", () => {
-    const mockObserver = { onLineClear: vi.fn() };
+    const mockObserver = { points: 0, onLineClear: vi.fn() };
     board.addObserver(mockObserver);
 
     expect((board as any).subscribers).to.include(mockObserver);
   });
 
   it("can be removed", () => {
-    const mockObserver = { onLineClear: vi.fn() };
+    const mockObserver = { points: 0, onLineClear: vi.fn() };
     board.addObserver(mockObserver);
 
     expect((board as any).subscribers).to.include(mockObserver);
@@ -63,5 +76,19 @@ describe("Nintendo scoring system", () => {
 
   it("keeps track of points", () => {
     expect(scoringSystem.points).toBe(0);
+  });
+
+  it("adds 40 points for clearing 1 line on level 0", () => {
+    board.addObserver(scoringSystem);
+    triggerLineClear(board);
+
+    expect(scoringSystem.points).toBe(40);
+  });
+
+  it("adds 100 points for clearing 2 lines on level 0", () => {
+    board.addObserver(scoringSystem);
+
+    clearTwoLines(board);
+    expect(scoringSystem.points).toBe(100);
   });
 });
