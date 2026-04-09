@@ -123,11 +123,11 @@ describe("Moving falling tetrominoes", () => {
 
       expect(board.toString()).to.equalShape(
         `..........
-         ..........
-         ..........
-         ..........
          ...TTT....
-         ....T.....`
+         ....T.....
+         ..........
+         ..........
+         ..........`
       );
     });
   });
@@ -160,7 +160,9 @@ describe("Moving falling tetrominoes", () => {
     });
 
     test("downward", () => {
-      board.moveDown();
+      for (let i = 0; i < 4; i++) {
+        board.moveDown();
+      }
       board.moveDown();
 
       expect(board.toString()).to.equalShape(
@@ -177,10 +179,11 @@ describe("Moving falling tetrominoes", () => {
   describe("cannot be moved through other blocks", () => {
     test("to the left", () => {
       moveFarLeft(board);
-      board.moveDown();
-      board.tick();
+      fallToBottom(board);
       board.drop(ArikaTetromino.T_SHAPE);
-      board.moveDown();
+      for (let i = 0; i < 4; i++) {
+        board.moveDown();
+      }
       board.moveLeft();
 
       expect(board.toString()).to.equalShape(
@@ -195,10 +198,11 @@ describe("Moving falling tetrominoes", () => {
 
     test("to the right", () => {
       moveFarRight(board);
-      board.moveDown();
-      board.tick();
+      fallToBottom(board);
       board.drop(ArikaTetromino.T_SHAPE);
-      board.moveDown();
+      for (let i = 0; i < 4; i++) {
+        board.moveDown();
+      }
       board.moveRight();
       board.moveRight();
 
@@ -213,18 +217,15 @@ describe("Moving falling tetrominoes", () => {
     });
 
     test("downward", () => {
-      board.moveDown();
-      board.tick();
+      fallToBottom(board);
       board.drop(ArikaTetromino.T_SHAPE);
-      board.moveDown();
-      board.tick();
-      board.drop(ArikaTetromino.T_SHAPE);
-      board.moveDown();
-      board.moveDown();
+      for (let i = 0; i < 4; i++) {
+        board.moveDown();
+      }
 
       expect(board.toString()).to.equalShape(
-        `...TTT....
-         ....T.....
+        `..........
+         ..........
          ...TTT....
          ....T.....
          ...TTT....
