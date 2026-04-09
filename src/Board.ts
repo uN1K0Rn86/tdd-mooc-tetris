@@ -132,6 +132,10 @@ export class Board {
     this.subscribers = this.subscribers.concat(observer);
   }
 
+  removeObserver(observer) {
+    this.subscribers = this.subscribers.filter((s) => s !== observer);
+  }
+
   toString() {
     const view = this.cells.map((row) => [...row]);
 

@@ -25,4 +25,14 @@ describe("Observers for Board", () => {
 
     expect((board as any).subscribers).to.include(mockObserver);
   });
+
+  it("can be removed", () => {
+    const mockObserver = { onLineClear: vi.fn() };
+    board.addObserver(mockObserver);
+
+    expect((board as any).subscribers).to.include(mockObserver);
+
+    board.removeObserver(mockObserver);
+    expect((board as any).subscribers).toEqual([]);
+  });
 });
