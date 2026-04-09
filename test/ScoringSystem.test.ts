@@ -131,4 +131,24 @@ describe("Nintendo scoring system", () => {
       board.levelUp();
     }
   });
+
+  it("adds 300 * (n+1) points for clearing 3 lines on level n", () => {
+    for (let n = 0; n < 100; n++) {
+      clearNLines(board, 3);
+      expect(scoringSystem.points).toBe(300 * (n + 1));
+      resetPoints(scoringSystem);
+      resetBoard(board);
+      board.levelUp();
+    }
+  });
+
+  it("adds 1200 * (n+1) points for clearing 4 lines on level n", () => {
+    for (let n = 0; n < 100; n++) {
+      clearNLines(board, 4);
+      expect(scoringSystem.points).toBe(1200 * (n + 1));
+      resetPoints(scoringSystem);
+      resetBoard(board);
+      board.levelUp();
+    }
+  });
 });
