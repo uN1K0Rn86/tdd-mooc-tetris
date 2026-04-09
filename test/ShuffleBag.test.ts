@@ -64,4 +64,15 @@ describe("Shuffle bag", () => {
     expect(takenPieces.filter((p) => p === ArikaTetromino.T_SHAPE)).to.have.length(1000);
     expect(takenPieces.filter((p) => p === ArikaTetromino.Z_SHAPE)).to.have.length(1000);
   });
+
+  it("starts from the end again after cycling through all items", () => {
+    const bag = new ShuffleBag();
+    addThousandEach(bag);
+
+    for (let i = 0; i < 7000; i++) {
+      bag.next();
+    }
+    bag.next();
+    expect((bag as any).currentPosition).to.be.equal(6998);
+  });
 });
