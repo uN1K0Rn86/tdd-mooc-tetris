@@ -3,6 +3,7 @@ import { Board } from "../src/Board";
 import { fillAllButRight } from "./ClearingLines.test";
 import { fallToBottom } from "./FallingTetrominoes.test";
 import { XShape } from "../src/XShape";
+import { NintendoScoringSystem } from "../src/NintendoScoringSystem";
 
 export function triggerLineClear(board: Board) {
   fillAllButRight(board);
@@ -34,5 +35,18 @@ describe("Observers for Board", () => {
 
     board.removeObserver(mockObserver);
     expect((board as any).subscribers).toEqual([]);
+  });
+});
+
+describe("Nintendo scoring system", () => {
+  let scoringSystem: NintendoScoringSystem;
+  beforeEach(() => {
+    scoringSystem = new NintendoScoringSystem();
+  });
+  it("has a callable method to update when lines are cleared", () => {
+    const spy = vi.spyOn(scoringSystem, "onLineClear");
+    scoringSystem.onLineClear();
+
+    expect(scoringSystem.onLineClear).toHaveBeenCalledTimes(1);
   });
 });
