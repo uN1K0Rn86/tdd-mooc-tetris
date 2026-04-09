@@ -60,4 +60,8 @@ describe("Nintendo scoring system", () => {
 
     expect(scoringSystem.onLineClear).toHaveBeenCalled();
   });
+
+  it("keeps track of points", () => {
+    expect(scoringSystem.points).toBe(0);
+  });
 });

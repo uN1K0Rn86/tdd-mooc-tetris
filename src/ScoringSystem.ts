@@ -1,3 +1,4 @@
 export interface ScoringSystem {
-  onLineClear(lines: number): void;
+  points: number;
+  onLineClear(lines: number, level: number): void;
 }
