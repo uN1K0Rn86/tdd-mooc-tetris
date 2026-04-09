@@ -1,4 +1,5 @@
 import { ArikaTetromino } from "./ArikaTetromino";
+import { ScoringSystem } from "./ScoringSystem";
 import { Shape } from "./Shape";
 
 export class Board {
@@ -9,7 +10,7 @@ export class Board {
   private activeBlock: Shape | null = null;
   private activeRow: number | null = null;
   private activeCol: number | null = null;
-  private subscribers = [];
+  private subscribers: ScoringSystem[] = [];
 
   constructor(width: number, height: number) {
     this.width = width;
@@ -128,11 +129,11 @@ export class Board {
     return 0;
   }
 
-  addObserver(observer) {
+  addObserver(observer: ScoringSystem) {
     this.subscribers = this.subscribers.concat(observer);
   }
 
-  removeObserver(observer) {
+  removeObserver(observer: ScoringSystem) {
     this.subscribers = this.subscribers.filter((s) => s !== observer);
   }
 
