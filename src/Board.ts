@@ -39,6 +39,7 @@ export class Board {
 
     this.clearLines();
     this.notifyOnSoftDrop();
+    this.softDropMoves = 0;
     this.falling = false;
     this.activeBlock = null;
     this.activeRow = null;

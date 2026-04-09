@@ -166,4 +166,12 @@ describe("Nintendo scoring system", () => {
 
     expect(scoringSystem.onSoftDrop).toHaveBeenCalled();
   });
+
+  it("adds 1 point when piece has been soft dropped one grid space", () => {
+    board.drop(ArikaTetromino.I_SHAPE);
+    board.moveDown();
+    fallToBottom(board);
+
+    expect(scoringSystem.points).toBe(1);
+  });
 });
