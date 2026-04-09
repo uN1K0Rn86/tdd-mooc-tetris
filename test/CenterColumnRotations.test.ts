@@ -3,7 +3,6 @@ import { expect } from "chai";
 import { Board } from "../src/Board";
 import { XShape } from "../src/XShape";
 import { ArikaTetromino } from "../src/ArikaTetromino";
-import { Shape } from "../src/Shape";
 
 export function xShapeToMiddle(board: Board) {
   board.drop(new XShape());
