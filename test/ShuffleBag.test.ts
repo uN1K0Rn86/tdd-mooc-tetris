@@ -20,4 +20,13 @@ describe("Shuffle bag", () => {
 
     expect(pieces).to.include(result);
   });
+
+  it("can be added to", () => {
+    const bag = new ShuffleBag();
+    const iShape = ArikaTetromino.I_SHAPE;
+
+    bag.add(iShape, 1);
+
+    expect((bag as any).pieces).to.include(iShape);
+  });
 });
