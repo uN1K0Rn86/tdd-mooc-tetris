@@ -3,6 +3,7 @@ import { expect } from "chai";
 import { Board } from "../src/Board";
 import { XShape } from "../src/XShape";
 import { ArikaTetromino } from "../src/ArikaTetromino";
+import { fallToBottom } from "./FallingTetrominoes.test";
 
 function fillAllButRight(board: Board) {
   for (let col = 0; col < board.width - 1; col++) {
@@ -11,8 +12,7 @@ function fillAllButRight(board: Board) {
       if ((board as any).activeCol < col) board.moveRight();
       else board.moveLeft();
     }
-    board.moveDown();
-    board.tick();
+    fallToBottom(board);
   }
 }
 
@@ -32,8 +32,7 @@ describe("Clearing lines: ", () => {
     board.moveRight();
     board.moveRight();
     board.moveRight();
-    board.moveDown();
-    board.tick();
+    fallToBottom(board);
 
     expect(board.toString()).to.equalShape(
       `..........
@@ -59,8 +58,7 @@ describe("Clearing lines: ", () => {
     board.moveRight();
     board.moveRight();
     board.moveRight();
-    board.moveDown();
-    board.tick();
+    fallToBottom(board);
 
     expect(board.toString()).to.equalShape(
       `..........

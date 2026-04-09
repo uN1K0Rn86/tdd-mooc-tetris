@@ -2,12 +2,11 @@ import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board";
 import { ArikaTetromino } from "../src/ArikaTetromino";
-import { moveFarLeft, moveFarRight } from "./FallingTetrominoes.test";
+import { fallToBottom, moveFarLeft, moveFarRight } from "./FallingTetrominoes.test";
 
 export function dropTShapeAndLock(board: Board) {
   board.drop(ArikaTetromino.T_SHAPE);
-  board.moveDown();
-  board.tick();
+  fallToBottom(board);
 }
 
 export function iShapeToRightWall(board: Board) {

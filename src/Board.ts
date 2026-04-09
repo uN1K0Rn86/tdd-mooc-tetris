@@ -180,8 +180,8 @@ export class Board {
   moveDown() {
     if (!this.activeBlock || this.activeRow === null || this.activeCol === null) return false;
 
-    while (this.canPlace(this.activeBlock, this.activeRow + 1, this.activeCol)) {
-      this.tick();
+    if (this.canPlace(this.activeBlock, this.activeRow + 1, this.activeCol)) {
+      this.activeRow = this.activeRow + 1;
     }
   }
 
