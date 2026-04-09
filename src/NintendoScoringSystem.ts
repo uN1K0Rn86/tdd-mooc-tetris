@@ -10,6 +10,12 @@ export class NintendoScoringSystem implements ScoringSystem {
       case 2:
         this.points += 100 * (level + 1);
         break;
+      case 3:
+        this.points += 300 * (level + 1);
+        break;
+      case 4:
+        this.points += 1200 * (level + 1);
+        break;
       default:
         break;
     }

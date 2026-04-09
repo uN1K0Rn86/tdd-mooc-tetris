@@ -15,9 +15,10 @@ export function triggerLineClear(board: Board) {
   fallToBottom(board);
 }
 
-export function clearTwoLines(board: Board) {
-  fillAllButRight(board);
-  fillAllButRight(board);
+export function clearNLines(board: Board, n: number) {
+  for (let i = 0; i < n; i++) {
+    fillAllButRight(board);
+  }
   board.drop(ArikaTetromino.I_SHAPE);
   board.tick();
   board.rotateLeft();
@@ -88,7 +89,21 @@ describe("Nintendo scoring system", () => {
   it("adds 100 points for clearing 2 lines on level 0", () => {
     board.addObserver(scoringSystem);
 
-    clearTwoLines(board);
+    clearNLines(board, 2);
     expect(scoringSystem.points).toBe(100);
+  });
+
+  it("adds 300 points for clearing 3 lines on level 0", () => {
+    board.addObserver(scoringSystem);
+
+    clearNLines(board, 3);
+    expect(scoringSystem.points).toBe(300);
+  });
+
+  it("adds 1200 points for clearing 4 lines on level 0", () => {
+    board.addObserver(scoringSystem);
+
+    clearNLines(board, 4);
+    expect(scoringSystem.points).toBe(1200);
   });
 });
