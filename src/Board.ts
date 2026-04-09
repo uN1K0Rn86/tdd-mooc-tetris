@@ -43,6 +43,7 @@ export class Board {
   }
 
   private clearLines() {
+    let clearedLines: number = 0;
     for (let r = this.height - 1; r >= 0; r--) {
       if (this.cells[r].every((c) => c !== ".")) {
         for (let newRow = r; newRow > 0; newRow--) {
@@ -50,8 +51,10 @@ export class Board {
         }
         this.cells[0] = Array(this.width).fill(".");
         r++;
+        clearedLines += 1;
       }
     }
+    this.notifyOnLineClear(clearedLines);
   }
 
   private canPlace(shape: Shape, baseRow: number, baseCol: number): boolean {
@@ -127,6 +130,12 @@ export class Board {
       }
     }
     return 0;
+  }
+
+  private notifyOnLineClear(lines: number) {
+    for (const subscriber of this.subscribers) {
+      subscriber.onLineClear(lines);
+    }
   }
 
   addObserver(observer: ScoringSystem) {

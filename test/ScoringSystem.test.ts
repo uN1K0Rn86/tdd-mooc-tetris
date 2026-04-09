@@ -52,4 +52,12 @@ describe("Nintendo scoring system", () => {
 
     expect(scoringSystem.onLineClear).toHaveBeenCalledTimes(1);
   });
+
+  it("is notified when a line is cleared", () => {
+    board.addObserver(scoringSystem);
+    const spy = vi.spyOn(scoringSystem, "onLineClear");
+    triggerLineClear(board);
+
+    expect(scoringSystem.onLineClear).toHaveBeenCalled();
+  });
 });
