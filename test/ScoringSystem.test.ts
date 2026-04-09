@@ -48,7 +48,7 @@ describe("Nintendo scoring system", () => {
 
   it("has a callable method to update when lines are cleared", () => {
     const spy = vi.spyOn(scoringSystem, "onLineClear");
-    scoringSystem.onLineClear(1);
+    scoringSystem.onLineClear(1, 0);
 
     expect(scoringSystem.onLineClear).toHaveBeenCalledTimes(1);
   });

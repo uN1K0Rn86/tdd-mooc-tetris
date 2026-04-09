@@ -11,6 +11,7 @@ export class Board {
   private activeRow: number | null = null;
   private activeCol: number | null = null;
   private subscribers: ScoringSystem[] = [];
+  private level: number = 0;
 
   constructor(width: number, height: number) {
     this.width = width;
@@ -54,7 +55,7 @@ export class Board {
         clearedLines += 1;
       }
     }
-    this.notifyOnLineClear(clearedLines);
+    this.notifyOnLineClear(clearedLines, this.level);
   }
 
   private canPlace(shape: Shape, baseRow: number, baseCol: number): boolean {
@@ -132,9 +133,9 @@ export class Board {
     return 0;
   }
 
-  private notifyOnLineClear(lines: number) {
+  private notifyOnLineClear(lines: number, level: number) {
     for (const subscriber of this.subscribers) {
-      subscriber.onLineClear(lines);
+      subscriber.onLineClear(lines, level);
     }
   }
 
