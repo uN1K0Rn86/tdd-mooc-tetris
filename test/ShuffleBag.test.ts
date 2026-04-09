@@ -3,6 +3,16 @@ import { ArikaTetromino } from "../src/ArikaTetromino";
 import { ShuffleBag } from "../src/ShuffleBag";
 import { expect } from "chai";
 
+export function addThousandEach(bag: ShuffleBag) {
+  bag.add(ArikaTetromino.I_SHAPE, 1000);
+  bag.add(ArikaTetromino.J_SHAPE, 1000);
+  bag.add(ArikaTetromino.L_SHAPE, 1000);
+  bag.add(ArikaTetromino.O_SHAPE, 1000);
+  bag.add(ArikaTetromino.S_SHAPE, 1000);
+  bag.add(ArikaTetromino.T_SHAPE, 1000);
+  bag.add(ArikaTetromino.Z_SHAPE, 1000);
+}
+
 describe("Shuffle bag", () => {
   it("returns an ArikaTetromino", () => {
     const pieces = [
@@ -28,5 +38,13 @@ describe("Shuffle bag", () => {
     bag.add(iShape, 1);
 
     expect((bag as any).pieces).to.include(iShape);
+  });
+
+  it("current position defaults to last item in bag after calling next()", () => {
+    const bag = new ShuffleBag();
+
+    addThousandEach(bag);
+    bag.next();
+    expect((bag as any).pieces[(bag as any).currentPosition]).to.be.equal(ArikaTetromino.Z_SHAPE);
   });
 });
