@@ -48,14 +48,14 @@ describe("Observers for Board", () => {
   });
 
   it("can be added", () => {
-    const mockObserver = { points: 0, onLineClear: vi.fn() };
+    const mockObserver = { points: 0, onLineClear: vi.fn(), onSoftDrop: vi.fn() };
     board.addObserver(mockObserver);
 
     expect((board as any).subscribers).to.include(mockObserver);
   });
 
   it("can be removed", () => {
-    const mockObserver = { points: 0, onLineClear: vi.fn() };
+    const mockObserver = { points: 0, onLineClear: vi.fn(), onSoftDrop: vi.fn() };
     board.addObserver(mockObserver);
 
     expect((board as any).subscribers).to.include(mockObserver);
