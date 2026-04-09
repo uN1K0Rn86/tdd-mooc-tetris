@@ -58,6 +58,7 @@ describe("Nintendo scoring system", () => {
   beforeEach(() => {
     scoringSystem = new NintendoScoringSystem();
     board = new Board(10, 10);
+    board.addObserver(scoringSystem);
   });
 
   it("has a callable method to update when lines are cleared", () => {
@@ -68,7 +69,6 @@ describe("Nintendo scoring system", () => {
   });
 
   it("is notified when a line is cleared", () => {
-    board.addObserver(scoringSystem);
     const spy = vi.spyOn(scoringSystem, "onLineClear");
     triggerLineClear(board);
 
@@ -80,29 +80,22 @@ describe("Nintendo scoring system", () => {
   });
 
   it("adds 40 points for clearing 1 line on level 0", () => {
-    board.addObserver(scoringSystem);
     triggerLineClear(board);
 
     expect(scoringSystem.points).toBe(40);
   });
 
   it("adds 100 points for clearing 2 lines on level 0", () => {
-    board.addObserver(scoringSystem);
-
     clearNLines(board, 2);
     expect(scoringSystem.points).toBe(100);
   });
 
   it("adds 300 points for clearing 3 lines on level 0", () => {
-    board.addObserver(scoringSystem);
-
     clearNLines(board, 3);
     expect(scoringSystem.points).toBe(300);
   });
 
   it("adds 1200 points for clearing 4 lines on level 0", () => {
-    board.addObserver(scoringSystem);
-
     clearNLines(board, 4);
     expect(scoringSystem.points).toBe(1200);
   });
