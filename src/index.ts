@@ -124,7 +124,16 @@ function drawBackground(ctx, canvasWidth, canvasHeight) {
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 }
 
-function drawCell(ctx: any, { cell, row, column, cellWidth, cellHeight }) {
+function drawCell(
+  ctx: any,
+  {
+    cell,
+    row,
+    column,
+    cellWidth,
+    cellHeight,
+  }: { cell: string; row: number; column: number; cellWidth: number; cellHeight: number }
+) {
   ctx.fillStyle = CELL_COLORS[cell];
   const x = cellWidth * column;
   const y = cellHeight * row;
