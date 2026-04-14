@@ -6,7 +6,7 @@ import { ArikaTetromino as Tetromino } from "./ArikaTetromino";
 // TODO: change this code to match the API you have created, if you want to run the game for some manual testing
 
 function initGame() {
-  const canvas = document.getElementById("game");
+  const canvas = document.getElementById("game") as HTMLCanvasElement | null;
 
   const game = {
     columns: 10,
@@ -68,7 +68,7 @@ function progressTime(game, timestamp) {
   }
 }
 
-function tick(game) {
+function tick(game: any) {
   if (!game.board.hasFalling()) {
     game.board.drop(game.tetrominoes.next());
   } else {
@@ -76,8 +76,8 @@ function tick(game) {
   }
 }
 
-function adjustDifficulty(game) {
-  const tickDuration = TICK_DURATION_PER_LEVEL[game.scoring.level];
+function adjustDifficulty(game: any) {
+  const tickDuration = TICK_DURATION_PER_LEVEL[game.board.level as keyof typeof TICK_DURATION_PER_LEVEL];
   if (tickDuration) {
     game.tickDuration = tickDuration;
   }
@@ -98,7 +98,8 @@ const TICK_DURATION_PER_LEVEL = {
 
 // rendering
 
-function renderGame(game, canvas, timestamp) {
+function renderGame(game: any, canvas: HTMLCanvasElement | null, timestamp: any) {
+  if (!canvas) return;
   const ctx = canvas.getContext("2d");
   const canvasWidth = (canvas.width = canvas.clientWidth);
   const canvasHeight = (canvas.height = canvas.clientHeight);
@@ -119,10 +120,12 @@ function renderGame(game, canvas, timestamp) {
   });
 }
 
-function drawBackground(ctx, canvasWidth, canvasHeight) {
+function drawBackground(ctx: any, canvasWidth: number, canvasHeight: number) {
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 }
+
+type Cell = keyof typeof CELL_COLORS;
 
 function drawCell(
   ctx: any,
@@ -132,7 +135,7 @@ function drawCell(
     column,
     cellWidth,
     cellHeight,
-  }: { cell: string; row: number; column: number; cellWidth: number; cellHeight: number }
+  }: { cell: Cell; row: number; column: number; cellWidth: number; cellHeight: number }
 ) {
   ctx.fillStyle = CELL_COLORS[cell];
   const x = cellWidth * column;
