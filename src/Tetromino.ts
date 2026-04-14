@@ -1,5 +1,5 @@
-import { RotatingShape } from "./RotatingShape";
-import { Shape } from "./Shape";
+import { RotatingShape } from "./RotatingShape.js";
+import { Shape } from "./Shape.js";
 
 export class Tetromino implements Shape {
   private readonly orientations: RotatingShape[];

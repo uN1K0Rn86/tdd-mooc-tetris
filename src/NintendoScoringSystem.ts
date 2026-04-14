@@ -1,4 +1,4 @@
-import { ScoringSystem } from "./ScoringSystem";
+import { ScoringSystem } from "./ScoringSystem.js";
 
 export class NintendoScoringSystem implements ScoringSystem {
   points = 0;

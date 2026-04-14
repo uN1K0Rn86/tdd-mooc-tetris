@@ -1,4 +1,4 @@
-import { Shape } from "./Shape";
+import { Shape } from "./Shape.js";
 
 export class XShape implements Shape {
   private readonly name: string;

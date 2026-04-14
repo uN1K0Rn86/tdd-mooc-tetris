@@ -1,7 +1,7 @@
-import { Board } from "./Board";
-import { NintendoScoringSystem as ScoringSystem } from "./NintendoScoringSystem";
-import { ShuffleBag } from "./ShuffleBag";
-import { ArikaTetromino as Tetromino } from "./ArikaTetromino";
+import { Board } from "./Board.js";
+import { NintendoScoringSystem as ScoringSystem } from "./NintendoScoringSystem.js";
+import { ShuffleBag } from "./ShuffleBag.js";
+import { ArikaTetromino as Tetromino } from "./ArikaTetromino.js";
 
 // TODO: change this code to match the API you have created, if you want to run the game for some manual testing
 
@@ -50,7 +50,7 @@ function initGame() {
     event.preventDefault(); // prevent game keys from scrolling the window
   });
 
-  const render = (timestamp) => {
+  const render = (timestamp: any) => {
     progressTime(game, timestamp);
     renderGame(game, canvas, timestamp);
     window.requestAnimationFrame(render);
@@ -60,7 +60,7 @@ function initGame() {
 
 // game logic
 
-function progressTime(game, timestamp) {
+function progressTime(game: any, timestamp: any) {
   if (timestamp >= game.nextTick) {
     tick(game);
     adjustDifficulty(game);
@@ -121,7 +121,7 @@ function renderGame(game: any, canvas: HTMLCanvasElement | null, timestamp: any)
 }
 
 function drawBackground(ctx: any, canvasWidth: number, canvasHeight: number) {
-  ctx.fillStyle = "#ffffff";
+  ctx.fillStyle = "#222";
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 }
 

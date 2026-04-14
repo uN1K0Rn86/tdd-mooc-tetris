@@ -29,7 +29,7 @@
     "npm": ">=10"
   },
   "scripts": {
-    "start": "http-server src -o / -c-1",
+    "start": "http-server . -o /src/index.html -c-1",
     "test": "vitest run",
     "autotest": "vitest watch",
     "format": "prettier --write .",

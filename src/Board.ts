@@ -1,6 +1,6 @@
-import { ArikaTetromino } from "./ArikaTetromino";
-import { ScoringSystem } from "./ScoringSystem";
-import { Shape } from "./Shape";
+import { ArikaTetromino } from "./ArikaTetromino.js";
+import { ScoringSystem } from "./ScoringSystem.js";
+import { Shape } from "./Shape.js";
 
 export class Board {
   private cells: string[][];

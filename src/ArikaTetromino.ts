@@ -1,4 +1,4 @@
-import { Shape } from "./Shape";
+import { Shape } from "./Shape.js";
 
 export class ArikaTetromino implements Shape {
   private readonly orientations: string[][];
