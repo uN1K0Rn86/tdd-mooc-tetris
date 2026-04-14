@@ -2,6 +2,7 @@ import { describe, it } from "vitest";
 import { ArikaTetromino } from "../src/ArikaTetromino";
 import { ShuffleBag } from "../src/ShuffleBag";
 import { expect } from "chai";
+import seedrandom from "seedrandom";
 
 export function addThousandEach(bag: ShuffleBag) {
   bag.add(ArikaTetromino.I_SHAPE, 1000);
@@ -81,5 +82,34 @@ describe("Shuffle bag", () => {
 
     const nextItem = bag.next();
     expect(nextItem).to.be.equal(null);
+  });
+
+  it("returns all inserted items for many random bags", () => {
+    const rng = seedrandom("shuffle-bag");
+    const rint = (a: number, b: number) => Math.floor(rng() * (b - a + 1)) + a;
+
+    const shapes = [
+      ArikaTetromino.I_SHAPE,
+      ArikaTetromino.J_SHAPE,
+      ArikaTetromino.L_SHAPE,
+      ArikaTetromino.O_SHAPE,
+      ArikaTetromino.S_SHAPE,
+      ArikaTetromino.T_SHAPE,
+      ArikaTetromino.Z_SHAPE,
+    ];
+
+    for (let t = 0; t < 200; t++) {
+      const bag = new ShuffleBag();
+      const counts = shapes.map(() => rint(0, 20));
+      const total = counts.reduce((a, b) => a + b, 0);
+      if (total === 0) continue;
+
+      shapes.forEach((shape, i) => bag.add(shape, counts[i]));
+      const taken = Array.from({ length: total }, () => bag.next());
+
+      shapes.forEach((shape, i) => {
+        expect(taken.filter((piece) => piece === shape)).to.have.length(counts[i]);
+      });
+    }
   });
 });
