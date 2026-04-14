@@ -1,7 +1,7 @@
 import { Board } from "./Board";
-import { ScoringSystem } from "./ScoringSystem.mjs";
-import { ShuffleBag } from "./ShuffleBag.mjs";
-import { Tetromino } from "./Tetromino.mjs";
+import { NintendoScoringSystem as ScoringSystem } from "./NintendoScoringSystem";
+import { ShuffleBag } from "./ShuffleBag";
+import { ArikaTetromino as Tetromino } from "./ArikaTetromino";
 
 // TODO: change this code to match the API you have created, if you want to run the game for some manual testing
 
