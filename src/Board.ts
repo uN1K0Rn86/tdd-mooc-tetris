@@ -234,4 +234,8 @@ export class Board {
   levelUp() {
     this.level += 1;
   }
+
+  cellAt(row: number, column: number) {
+    return this.cells[row][column];
+  }
 }
