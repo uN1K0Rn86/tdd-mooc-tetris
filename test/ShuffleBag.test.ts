@@ -75,4 +75,11 @@ describe("Shuffle bag", () => {
     bag.next();
     expect((bag as any).currentPosition).to.be.equal(6998);
   });
+
+  it("empty bag should return null as next item", () => {
+    const bag = new ShuffleBag();
+
+    const nextItem = bag.next();
+    expect(nextItem).to.be.equal(null);
+  });
 });

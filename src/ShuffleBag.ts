@@ -17,6 +17,7 @@ export class ShuffleBag {
     this.pieces[this.currentPosition] = currentItem;
     this.currentPosition--;
 
+    if (!currentItem) return null;
     return currentItem;
   }
 
