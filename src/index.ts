@@ -27,6 +27,8 @@ function initGame() {
     ]),
   };
 
+  game.board.addObserver(game.scoring);
+
   document.addEventListener("keydown", (event) => {
     if (event.code === "Space") {
       for (let i = 0; i < game.rows; i++) {
