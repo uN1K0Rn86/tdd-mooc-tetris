@@ -236,6 +236,21 @@ export class Board {
   }
 
   cellAt(row: number, column: number) {
+    if (this.activeBlock && this.activeRow !== null && this.activeCol !== null) {
+      const localRow = row - this.activeRow;
+      const localCol = column - this.activeCol;
+
+      if (
+        localRow >= 0 &&
+        localRow < this.activeBlock.width() &&
+        localCol >= 0 &&
+        localCol < this.activeBlock.height() &&
+        this.activeBlock.cellAt(localRow, localCol) !== "."
+      ) {
+        return this.activeBlock.cellAt(localRow, localCol);
+      }
+    }
+
     return this.cells[row][column];
   }
 }
