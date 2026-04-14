@@ -27,10 +27,6 @@ function initGame() {
     ]),
   };
 
-  game.board.onClearLine = (lineCount) => {
-    game.scoring.linesCleared(lineCount);
-  };
-
   document.addEventListener("keydown", (event) => {
     if (event.code === "Space") {
       for (let i = 0; i < game.rows; i++) {
@@ -117,8 +113,8 @@ function renderGame(game, canvas, timestamp) {
     }
   }
   drawScoring(ctx, {
-    level: game.scoring.level,
-    score: game.scoring.score,
+    level: game.board.level,
+    score: game.scoring.points,
     canvasWidth,
   });
 }
@@ -146,7 +142,7 @@ const CELL_COLORS = {
   O: "#9a8016",
 };
 
-function drawScoring(ctx, { score, level, canvasWidth }) {
+function drawScoring(ctx: any, { score, level, canvasWidth }: { score: number; level: number; canvasWidth: number }) {
   const margin = 5;
   const fontSize = 22;
   drawText(ctx, {
@@ -164,7 +160,10 @@ function drawScoring(ctx, { score, level, canvasWidth }) {
   });
 }
 
-function drawText(ctx, { text, x, y, font, textAlign }) {
+function drawText(
+  ctx: any,
+  { text, x, y, font, textAlign }: { text: string; x: number; y: number; font: string; textAlign?: string }
+) {
   ctx.font = font;
   ctx.textAlign = textAlign || "left";
   ctx.fillStyle = "#000000";
